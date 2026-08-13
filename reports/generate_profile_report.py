@@ -173,6 +173,27 @@ def _depara_section() -> str:
     return "\n".join(parts)
 
 
+def _guides_section() -> str:
+    """Links para os guias Markdown didáticos."""
+    return """
+<div class="section" id="guias">
+  <h2>Guias de leitura</h2>
+  <p>Documentos em Markdown para quem não é estatístico:</p>
+  <ul>
+    <li><code>reports/README.md</code> — mapa geral dos entregáveis</li>
+    <li><code>reports/descriptive/README.md</code> — como ler as tabelas</li>
+    <li><code>reports/figures/README.md</code> — lista de gráficos</li>
+    <li><code>reports/association_results.md</code>
+      — interpretação dos testes</li>
+    <li><code>reports/correlation_results.md</code>
+      — correlações e IC 95%</li>
+    <li><code>docs/depara_normalizacoes.md</code>
+      — de-para original → limpo</li>
+  </ul>
+</div>
+"""
+
+
 def generate_html(theme: str = "classic") -> str:
     """Monta HTML completo."""
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -181,6 +202,7 @@ def generate_html(theme: str = "classic") -> str:
     wrapper_close = "</div>" if theme == "minimal" else ""
     toc = """
     <nav class="toc">
+      <a href="#guias">Guias</a>
       <a href="#associacoes">Associações</a>
       <a href="#correlacoes">Correlações</a>
       <a href="#descritiva">Descritiva</a>
@@ -199,6 +221,7 @@ def generate_html(theme: str = "classic") -> str:
         f'<p class="meta">Gerado em {now}</p>',
         toc if theme == "minimal" else "",
         "</header>",
+        _guides_section(),
         _association_section(),
         _correlation_section(),
         _clinical_section(),

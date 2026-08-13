@@ -154,7 +154,11 @@ O de-para é regenerado automaticamente em cada execução de
 | Plano de desenvolvimento | [`docs/plano_de_desenvolvimento.md`](docs/plano_de_desenvolvimento.md) |
 | Plano de implementação | [`docs/plano_implementacao_upa.md`](docs/plano_implementacao_upa.md) |
 | De-para de normalizações | [`docs/depara_normalizacoes.md`](docs/depara_normalizacoes.md) |
+| Guia geral dos reports | [`reports/README.md`](reports/README.md) |
+| Como ler tabelas descritivas | [`reports/descriptive/README.md`](reports/descriptive/README.md) |
+| Como ler figuras | [`reports/figures/README.md`](reports/figures/README.md) |
 | Interpretação das associações | [`reports/association_results.md`](reports/association_results.md) |
+| Interpretação das correlações | [`reports/correlation_results.md`](reports/correlation_results.md) |
 | Change spec | [`.specs/changes/upa-analytics/`](.specs/changes/upa-analytics/) |
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
