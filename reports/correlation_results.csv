@@ -1,0 +1,2 @@
+variable_a,variable_b,method,r,ci_lower,ci_upper,p_value,n
+duracao_horas,faixa_etaria_ordinal,spearman,0.08403698969502574,-0.026117342113407882,0.19665503191638198,0.1293886342887718,327

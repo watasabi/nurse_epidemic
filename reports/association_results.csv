@@ -1,0 +1,10 @@
+variable,target,test,statistic,p_value,n,note
+comorbidade,desfecho_padronizado,chi2,341.0598135190875,7.323442074014775e-69,328,
+tabagista,desfecho_padronizado,chi2,339.77565487386033,1.3761980039153407e-68,328,
+etilista,desfecho_padronizado,chi2,349.2123150051958,1.3335818261081045e-70,328,
+doencas_cardiacas,desfecho_padronizado,chi2,351.98579649192936,3.41203482322573e-71,328,
+doencas_respiratorias,desfecho_padronizado,chi2,331.0727075446542,9.883211059068388e-67,328,
+doencas_metabolicas,desfecho_padronizado,chi2,343.48903269592415,2.220289677697555e-69,328,
+setor_destinado,desfecho_padronizado,chi2,225.38547021370402,5.5794570995624844e-39,328,
+tempo_permanencia,desfecho_padronizado,chi2,368.5634937813391,1.3807740333312353e-68,328,
+duracao_horas,desfecho_padronizado,kruskal,2.469428974145273,0.6501182474762067,327,

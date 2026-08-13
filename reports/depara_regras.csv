@@ -1,0 +1,15 @@
+grupo_regra,padrao_original,valor_normalizado
+sexo,M / MASCULINO,M
+sexo,F / FEMININO,F
+sexo,Outros,OUTRO
+sim_nao,SIM / S / SIM_*,SIM
+sim_nao,NÃO / NAO / N / NEGA,NAO
+desfecho_padronizado,ALTA*,ALTA
+desfecho_padronizado,TRANSFERENCIA* / TRANSFERÊNCIA*,INTERNAMENTO
+desfecho_padronizado,CAPS / EVASAO / ENCERRAMENTO*,ENCAMINHAMENTO
+desfecho_padronizado,OBITO* / ÓBITO*,OBITO
+tempo_permanencia,ATÉ 6H (variantes com espaço),ATE_6H
+tempo_permanencia,ATÉ 12H,ATE_12H
+tempo_permanencia,ATÉ 24H,ATE_24H
+tempo_permanencia,MAIS DE 24H,MAIS_24H
+setor_destinado,"Texto normalizado (maiúsculas, sem acentos)",valor literal

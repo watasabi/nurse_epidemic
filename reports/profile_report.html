@@ -1,0 +1,1669 @@
+<!DOCTYPE html><html lang='pt-BR'><head>
+<meta charset='utf-8'>
+<title>Relatório UPA Curitiba</title>
+<style>
+body{font-family:Arial,sans-serif;margin:20px;color:#222}
+h1,h2{color:#222}
+table{border-collapse:collapse;width:100%;margin:8px 0}
+th,td{border:1px solid #ddd;padding:6px 8px;text-align:left}
+th{background:#f7f7f7}
+.section{margin-bottom:28px}
+.meta{color:#666;font-size:0.9em}
+img{max-width:100%;height:auto;margin:8px 0}
+details{margin:8px 0}
+</style></head><body>
+
+<header><h1>Perfil epidemiológico UPA Curitiba</h1>
+<p class="meta">Gerado em 2026-08-13 19:20</p>
+
+</header>
+<div class="section" id="associacoes"><h2>Associações</h2>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>variable</th>
+      <th>target</th>
+      <th>test</th>
+      <th>statistic</th>
+      <th>p_value</th>
+      <th>n</th>
+      <th>note</th>
+      <th>neg_log10_p</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>comorbidade</td>
+      <td>desfecho_padronizado</td>
+      <td>chi2</td>
+      <td>341.059814</td>
+      <td>7.323442e-69</td>
+      <td>328</td>
+      <td></td>
+      <td>68.135285</td>
+    </tr>
+    <tr>
+      <td>tabagista</td>
+      <td>desfecho_padronizado</td>
+      <td>chi2</td>
+      <td>339.775655</td>
+      <td>1.376198e-68</td>
+      <td>328</td>
+      <td></td>
+      <td>67.861319</td>
+    </tr>
+    <tr>
+      <td>etilista</td>
+      <td>desfecho_padronizado</td>
+      <td>chi2</td>
+      <td>349.212315</td>
+      <td>1.333582e-70</td>
+      <td>328</td>
+      <td></td>
+      <td>69.874980</td>
+    </tr>
+    <tr>
+      <td>doencas_cardiacas</td>
+      <td>desfecho_padronizado</td>
+      <td>chi2</td>
+      <td>351.985796</td>
+      <td>3.412035e-71</td>
+      <td>328</td>
+      <td></td>
+      <td>70.466987</td>
+    </tr>
+    <tr>
+      <td>doencas_respiratorias</td>
+      <td>desfecho_padronizado</td>
+      <td>chi2</td>
+      <td>331.072708</td>
+      <td>9.883211e-67</td>
+      <td>328</td>
+      <td></td>
+      <td>66.005102</td>
+    </tr>
+    <tr>
+      <td>doencas_metabolicas</td>
+      <td>desfecho_padronizado</td>
+      <td>chi2</td>
+      <td>343.489033</td>
+      <td>2.220290e-69</td>
+      <td>328</td>
+      <td></td>
+      <td>68.653590</td>
+    </tr>
+    <tr>
+      <td>setor_destinado</td>
+      <td>desfecho_padronizado</td>
+      <td>chi2</td>
+      <td>225.385470</td>
+      <td>5.579457e-39</td>
+      <td>328</td>
+      <td></td>
+      <td>38.253408</td>
+    </tr>
+    <tr>
+      <td>tempo_permanencia</td>
+      <td>desfecho_padronizado</td>
+      <td>chi2</td>
+      <td>368.563494</td>
+      <td>1.380774e-68</td>
+      <td>328</td>
+      <td></td>
+      <td>67.859877</td>
+    </tr>
+    <tr>
+      <td>duracao_horas</td>
+      <td>desfecho_padronizado</td>
+      <td>kruskal</td>
+      <td>2.469429</td>
+      <td>6.501182e-01</td>
+      <td>327</td>
+      <td></td>
+      <td>0.187008</td>
+    </tr>
+  </tbody>
+</table>
+<details><summary>Interpretação clínica</summary><pre># Resultados de associação com desfecho clínico
+
+Nível de significância: 5%. Testes aplicados conforme tipo de variável (χ²/Fisher ou Mann-Whitney/Kruskal-Wallis).
+
+| Variável | Teste | Estatística | p-valor | n | Nota |
+|----------|-------|-------------|---------|---|------|
+| comorbidade | chi2 | 341.0598 | 0.0000 | 328 | significativo |
+| tabagista | chi2 | 339.7757 | 0.0000 | 328 | significativo |
+| etilista | chi2 | 349.2123 | 0.0000 | 328 | significativo |
+| doencas_cardiacas | chi2 | 351.9858 | 0.0000 | 328 | significativo |
+| doencas_respiratorias | chi2 | 331.0727 | 0.0000 | 328 | significativo |
+| doencas_metabolicas | chi2 | 343.4890 | 0.0000 | 328 | significativo |
+| setor_destinado | chi2 | 225.3855 | 0.0000 | 328 | significativo |
+| tempo_permanencia | chi2 | 368.5635 | 0.0000 | 328 | significativo |
+| duracao_horas | kruskal | 2.4694 | 0.6501 | 327 | não significativo |
+
+## Interpretação
+
+- **comorbidade**: associação significativa com desfecho_padronizado (p = 0.0000).
+- **tabagista**: associação significativa com desfecho_padronizado (p = 0.0000).
+- **etilista**: associação significativa com desfecho_padronizado (p = 0.0000).
+- **doencas_cardiacas**: associação significativa com desfecho_padronizado (p = 0.0000).
+- **doencas_respiratorias**: associação significativa com desfecho_padronizado (p = 0.0000).
+- **doencas_metabolicas**: associação significativa com desfecho_padronizado (p = 0.0000).
+- **setor_destinado**: associação significativa com desfecho_padronizado (p = 0.0000).
+- **tempo_permanencia**: associação significativa com desfecho_padronizado (p = 0.0000).</pre></details>
+<h3>Matriz PhiK</h3>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Unnamed: 0</th>
+      <th>comorbidade</th>
+      <th>tabagista</th>
+      <th>etilista</th>
+      <th>doencas_cardiacas</th>
+      <th>doencas_respiratorias</th>
+      <th>doencas_metabolicas</th>
+      <th>setor_destinado</th>
+      <th>tempo_permanencia</th>
+      <th>desfecho_padronizado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>comorbidade</td>
+      <td>1.000000</td>
+      <td>0.948422</td>
+      <td>0.942077</td>
+      <td>0.974303</td>
+      <td>0.946823</td>
+      <td>0.966165</td>
+      <td>0.148600</td>
+      <td>0.727258</td>
+      <td>0.725221</td>
+    </tr>
+    <tr>
+      <td>tabagista</td>
+      <td>0.948422</td>
+      <td>1.000000</td>
+      <td>0.961869</td>
+      <td>0.942102</td>
+      <td>0.951115</td>
+      <td>0.942371</td>
+      <td>0.161913</td>
+      <td>0.721879</td>
+      <td>0.724210</td>
+    </tr>
+    <tr>
+      <td>etilista</td>
+      <td>0.942077</td>
+      <td>0.961869</td>
+      <td>1.000000</td>
+      <td>0.946778</td>
+      <td>0.942090</td>
+      <td>0.948184</td>
+      <td>0.212608</td>
+      <td>0.723675</td>
+      <td>0.731582</td>
+    </tr>
+    <tr>
+      <td>doencas_cardiacas</td>
+      <td>0.974303</td>
+      <td>0.942102</td>
+      <td>0.946778</td>
+      <td>1.000000</td>
+      <td>0.943435</td>
+      <td>0.966997</td>
+      <td>0.149152</td>
+      <td>0.717937</td>
+      <td>0.733725</td>
+    </tr>
+    <tr>
+      <td>doencas_respiratorias</td>
+      <td>0.946823</td>
+      <td>0.951115</td>
+      <td>0.942090</td>
+      <td>0.943435</td>
+      <td>1.000000</td>
+      <td>0.942132</td>
+      <td>0.121311</td>
+      <td>0.716085</td>
+      <td>0.717296</td>
+    </tr>
+    <tr>
+      <td>doencas_metabolicas</td>
+      <td>0.966165</td>
+      <td>0.942371</td>
+      <td>0.948184</td>
+      <td>0.966997</td>
+      <td>0.942132</td>
+      <td>1.000000</td>
+      <td>0.141074</td>
+      <td>0.718943</td>
+      <td>0.727126</td>
+    </tr>
+    <tr>
+      <td>setor_destinado</td>
+      <td>0.148600</td>
+      <td>0.161913</td>
+      <td>0.212608</td>
+      <td>0.149152</td>
+      <td>0.121311</td>
+      <td>0.141074</td>
+      <td>1.000000</td>
+      <td>0.519322</td>
+      <td>0.780193</td>
+    </tr>
+    <tr>
+      <td>tempo_permanencia</td>
+      <td>0.727258</td>
+      <td>0.721879</td>
+      <td>0.723675</td>
+      <td>0.717937</td>
+      <td>0.716085</td>
+      <td>0.718943</td>
+      <td>0.519322</td>
+      <td>1.000000</td>
+      <td>0.873366</td>
+    </tr>
+    <tr>
+      <td>desfecho_padronizado</td>
+      <td>0.725221</td>
+      <td>0.724210</td>
+      <td>0.731582</td>
+      <td>0.733725</td>
+      <td>0.717296</td>
+      <td>0.727126</td>
+      <td>0.780193</td>
+      <td>0.873366</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="section" id="correlacoes"><h2>Correlações</h2><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>variable_a</th>
+      <th>variable_b</th>
+      <th>method</th>
+      <th>r</th>
+      <th>ci_lower</th>
+      <th>ci_upper</th>
+      <th>p_value</th>
+      <th>n</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>duracao_horas</td>
+      <td>faixa_etaria_ordinal</td>
+      <td>spearman</td>
+      <td>0.084037</td>
+      <td>-0.026117</td>
+      <td>0.196655</td>
+      <td>0.129389</td>
+      <td>327</td>
+    </tr>
+  </tbody>
+</table></div>
+<div class="section" id="descritiva">
+<h2>Análise descritiva clínica</h2>
+<h3>Desfecho clínico</h3>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ALTA</td>
+      <td>145</td>
+      <td>0.442073</td>
+    </tr>
+    <tr>
+      <td>INTERNAMENTO</td>
+      <td>117</td>
+      <td>0.356707</td>
+    </tr>
+    <tr>
+      <td>ENCAMINHAMENTO</td>
+      <td>48</td>
+      <td>0.146341</td>
+    </tr>
+    <tr>
+      <td>OBITO</td>
+      <td>17</td>
+      <td>0.051829</td>
+    </tr>
+    <tr>
+      <td>OUTRO</td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+<h3>Setor destinado</h3>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EIXO CRITICO</td>
+      <td>171</td>
+      <td>0.521341</td>
+    </tr>
+    <tr>
+      <td>EIXO DECISAO</td>
+      <td>127</td>
+      <td>0.387195</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>27</td>
+      <td>0.082317</td>
+    </tr>
+    <tr>
+      <td>SUTURA</td>
+      <td>2</td>
+      <td>0.006098</td>
+    </tr>
+    <tr>
+      <td>EIXO ISOLAMENTO</td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+<h3>Comorbidades</h3>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>comorbidade</th>
+      <th>sim_absoluta</th>
+      <th>sim_relativa</th>
+      <th>n_valido</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>diabetico</td>
+      <td>69</td>
+      <td>0.210366</td>
+      <td>328</td>
+    </tr>
+    <tr>
+      <td>hipertenso</td>
+      <td>117</td>
+      <td>0.356707</td>
+      <td>328</td>
+    </tr>
+    <tr>
+      <td>doencas_cardiacas</td>
+      <td>123</td>
+      <td>0.375000</td>
+      <td>328</td>
+    </tr>
+    <tr>
+      <td>doencas_respiratorias</td>
+      <td>51</td>
+      <td>0.155488</td>
+      <td>328</td>
+    </tr>
+    <tr>
+      <td>doencas_metabolicas</td>
+      <td>104</td>
+      <td>0.317073</td>
+      <td>328</td>
+    </tr>
+  </tbody>
+</table>
+<h3>Hábitos de vida</h3>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>habito</th>
+      <th>sim_absoluta</th>
+      <th>sim_relativa</th>
+      <th>n_valido</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>tabagista</td>
+      <td>106</td>
+      <td>0.323171</td>
+      <td>328</td>
+    </tr>
+    <tr>
+      <td>etilista</td>
+      <td>66</td>
+      <td>0.201220</td>
+      <td>328</td>
+    </tr>
+  </tbody>
+</table>
+<h3>Tempo de permanência</h3>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ATE_6H</td>
+      <td>120</td>
+      <td>0.365854</td>
+    </tr>
+    <tr>
+      <td>MAIS_24H</td>
+      <td>87</td>
+      <td>0.265244</td>
+    </tr>
+    <tr>
+      <td>ATE_24H</td>
+      <td>69</td>
+      <td>0.210366</td>
+    </tr>
+    <tr>
+      <td>ATE_12H</td>
+      <td>51</td>
+      <td>0.155488</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="section" id="figuras"><h2>Figuras</h2>
+<h3>Matriz de associação PhiK</h3>
+<img src="figures/association_phik_matrix.png" alt="Matriz de associação PhiK">
+<h3>Desfecho clínico padronizado</h3>
+<img src="figures/desfecho_bar.png" alt="Desfecho clínico padronizado">
+<h3>Doenças por grupo, mês e UPA</h3>
+<img src="figures/doencas_upa_trend.png" alt="Doenças por grupo, mês e UPA">
+<h3>Setor destinado</h3>
+<img src="figures/setor_bar.png" alt="Setor destinado">
+<h3>Distribuição por sexo</h3>
+<img src="figures/sexo_bar.png" alt="Distribuição por sexo">
+</div>
+<div class="section" id="depara"><h2>De-para de normalizações</h2>
+<p>Mapeamento entre dados originais da planilha e valores padronizados usados nas análises.</p>
+<h3>Colunas</h3>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>coluna_original_excel</th>
+      <th>coluna_normalizada</th>
+      <th>tipo_mapeamento</th>
+      <th>observacao</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DATA DO INÍCIO DA CONSULTA</td>
+      <td>data_inicio_consulta</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>INICIO DA CONSULTA</td>
+      <td>hora_inicio_consulta</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>INÍCIO DA CONSULTA</td>
+      <td>hora_inicio_consulta</td>
+      <td>alias</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DATA DO FINAL DA CONSULTA</td>
+      <td>data_fim_consulta</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>FINAL DA CONSULTA</td>
+      <td>hora_fim_consulta</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DATA DE NASCIMENTO</td>
+      <td>data_nascimento</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>IDADE</td>
+      <td>faixa_etaria</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>IDADE.1</td>
+      <td>idade_numerica</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SEXO (F / M)</td>
+      <td>sexo</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>CID Admissão</td>
+      <td>cid_admissao</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>FLUXOGRAMA UTILIZADO NA CR</td>
+      <td>fluxograma</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DESCRIMINADOR</td>
+      <td>discriminador</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>PRIORIDADE</td>
+      <td>prioridade</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Desc. CID Admissão</td>
+      <td>desc_cid_admissao</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SETOR DESTINADO</td>
+      <td>setor_destinado</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Data Diagnóstico Admissão</td>
+      <td>data_diag_admissao</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Desc. CID Alta</td>
+      <td>desc_cid_alta</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Data Diagnóstico Alta</td>
+      <td>data_diag_alta</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>COMORBIDADE&nbsp;&nbsp;(SIM OU NÃO)</td>
+      <td>comorbidade</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>COMORBIDADES (SIM OU NÃO)</td>
+      <td>comorbidade</td>
+      <td>alias</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Diabético</td>
+      <td>diabetico</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Hipertenso</td>
+      <td>hipertenso</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Saúde mental</td>
+      <td>saude_mental</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>TABAGISTA</td>
+      <td>tabagista</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>ETILISTA</td>
+      <td>etilista</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>USO DE SPAS</td>
+      <td>uso_spas</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DOENÇAS CARDÍACAS</td>
+      <td>doencas_cardiacas</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DOENÇAS RESPIRATÓRIAS CRÔNICAS</td>
+      <td>doencas_respiratorias</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>NEOPLASIAS</td>
+      <td>neoplasias</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DOENÇAS METABÓLICAS</td>
+      <td>doencas_metabolicas</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>TEMPO TOTAL DE PERMANÊNCIA NA UPA</td>
+      <td>tempo_permanencia</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DESFECHO FINAL</td>
+      <td>desfecho</td>
+      <td>principal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>INÍCIO DA CONSULTA</td>
+      <td>hora_inicio_consulta</td>
+      <td>alias_aba</td>
+      <td>Unificado com 'INICIO DA CONSULTA'</td>
+    </tr>
+    <tr>
+      <td>COMORBIDADES (SIM OU NÃO)</td>
+      <td>comorbidade</td>
+      <td>alias_aba</td>
+      <td>Unificado com 'COMORBIDADE&nbsp;&nbsp;(SIM OU NÃO)'</td>
+    </tr>
+    <tr>
+      <td>(derivada)</td>
+      <td>duracao_horas</td>
+      <td>derivada</td>
+      <td>Calculada: data/hora fim − data/hora início</td>
+    </tr>
+    <tr>
+      <td>(derivada)</td>
+      <td>desfecho_padronizado</td>
+      <td>derivada</td>
+      <td>Agrupamento de DESFECHO FINAL</td>
+    </tr>
+  </tbody>
+</table>
+<h3>Valores (amostra)</h3>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>coluna_normalizada</th>
+      <th>valor_original</th>
+      <th>valor_normalizado</th>
+      <th>n</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sexo</td>
+      <td>F</td>
+      <td>F</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <td>sexo</td>
+      <td>M</td>
+      <td>M</td>
+      <td>178</td>
+    </tr>
+    <tr>
+      <td>faixa_etaria</td>
+      <td>18-40</td>
+      <td>18-40</td>
+      <td>116</td>
+    </tr>
+    <tr>
+      <td>faixa_etaria</td>
+      <td>40-60</td>
+      <td>40-60</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <td>faixa_etaria</td>
+      <td>60-80</td>
+      <td>60-80</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <td>faixa_etaria</td>
+      <td>80-100</td>
+      <td>80-100</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <td>comorbidade</td>
+      <td>NÃO</td>
+      <td>NAO</td>
+      <td>127</td>
+    </tr>
+    <tr>
+      <td>comorbidade</td>
+      <td>SIM</td>
+      <td>SIM</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>comorbidade</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>diabetico</td>
+      <td>NÃO</td>
+      <td>NAO</td>
+      <td>259</td>
+    </tr>
+    <tr>
+      <td>diabetico</td>
+      <td>SIM</td>
+      <td>SIM</td>
+      <td>69</td>
+    </tr>
+    <tr>
+      <td>hipertenso</td>
+      <td>NÃO</td>
+      <td>NAO</td>
+      <td>211</td>
+    </tr>
+    <tr>
+      <td>hipertenso</td>
+      <td>SIM</td>
+      <td>SIM</td>
+      <td>117</td>
+    </tr>
+    <tr>
+      <td>saude_mental</td>
+      <td>NÃO</td>
+      <td>NAO</td>
+      <td>248</td>
+    </tr>
+    <tr>
+      <td>saude_mental</td>
+      <td>SIM</td>
+      <td>SIM</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <td>tabagista</td>
+      <td>NÃO</td>
+      <td>NAO</td>
+      <td>221</td>
+    </tr>
+    <tr>
+      <td>tabagista</td>
+      <td>SIM</td>
+      <td>SIM</td>
+      <td>106</td>
+    </tr>
+    <tr>
+      <td>tabagista</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>etilista</td>
+      <td>NÃO</td>
+      <td>NAO</td>
+      <td>261</td>
+    </tr>
+    <tr>
+      <td>etilista</td>
+      <td>SIM</td>
+      <td>SIM</td>
+      <td>66</td>
+    </tr>
+    <tr>
+      <td>etilista</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>uso_spas</td>
+      <td>NÃO</td>
+      <td>NAO</td>
+      <td>287</td>
+    </tr>
+    <tr>
+      <td>uso_spas</td>
+      <td>NÃO</td>
+      <td>NAO</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>uso_spas</td>
+      <td>SIM</td>
+      <td>SIM</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <td>uso_spas</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>doencas_cardiacas</td>
+      <td>NAO</td>
+      <td>NAO</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>doencas_cardiacas</td>
+      <td>NÃO</td>
+      <td>NAO</td>
+      <td>203</td>
+    </tr>
+    <tr>
+      <td>doencas_cardiacas</td>
+      <td>SIM</td>
+      <td>SIM</td>
+      <td>123</td>
+    </tr>
+    <tr>
+      <td>doencas_cardiacas</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>doencas_respiratorias</td>
+      <td>NÃO</td>
+      <td>NAO</td>
+      <td>276</td>
+    </tr>
+    <tr>
+      <td>doencas_respiratorias</td>
+      <td>SIM</td>
+      <td>SIM</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <td>doencas_respiratorias</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>neoplasias</td>
+      <td>NÃO</td>
+      <td>NAO</td>
+      <td>321</td>
+    </tr>
+    <tr>
+      <td>neoplasias</td>
+      <td>SIM</td>
+      <td>SIM</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>neoplasias</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>doencas_metabolicas</td>
+      <td>NÃO</td>
+      <td>NAO</td>
+      <td>222</td>
+    </tr>
+    <tr>
+      <td>doencas_metabolicas</td>
+      <td>NÃO</td>
+      <td>NAO</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>doencas_metabolicas</td>
+      <td>SIM</td>
+      <td>SIM</td>
+      <td>104</td>
+    </tr>
+    <tr>
+      <td>doencas_metabolicas</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>setor_destinado</td>
+      <td>EIXO CRÍTICO</td>
+      <td>EIXO CRITICO</td>
+      <td>171</td>
+    </tr>
+    <tr>
+      <td>setor_destinado</td>
+      <td>EIXO DECISÃO</td>
+      <td>EIXO DECISAO</td>
+      <td>127</td>
+    </tr>
+    <tr>
+      <td>setor_destinado</td>
+      <td>EIXO ISOLAMENTO</td>
+      <td>EIXO ISOLAMENTO</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>setor_destinado</td>
+      <td>SUTURA</td>
+      <td>SUTURA</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>setor_destinado</td>
+      <td></td>
+      <td></td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <td>tempo_permanencia</td>
+      <td>ATÉ 12H</td>
+      <td>ATE_12H</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <td>tempo_permanencia</td>
+      <td>ATÉ 12H</td>
+      <td>ATE_12H</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>tempo_permanencia</td>
+      <td>ATÉ 24H</td>
+      <td>ATE_24H</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <td>tempo_permanencia</td>
+      <td>ATÉ 24H</td>
+      <td>ATE_24H</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>tempo_permanencia</td>
+      <td>ATÉ 6H</td>
+      <td>ATE_6H</td>
+      <td>116</td>
+    </tr>
+    <tr>
+      <td>tempo_permanencia</td>
+      <td>ATÉ 6H</td>
+      <td>ATE_6H</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p class="meta">Arquivo completo: reports/depara_valores.csv (65 linhas). Documentação: docs/depara_normalizacoes.md</p>
+</div>
+<div class="section" id="csvs"><h2>CSVs descritivos</h2>
+<details><summary>clin_comorbidade.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SIM</td>
+      <td>200</td>
+      <td>0.609756</td>
+    </tr>
+    <tr>
+      <td>NAO</td>
+      <td>127</td>
+      <td>0.387195</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_comorbidades.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>comorbidade</th>
+      <th>sim_absoluta</th>
+      <th>sim_relativa</th>
+      <th>n_valido</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>diabetico</td>
+      <td>69</td>
+      <td>0.210366</td>
+      <td>328</td>
+    </tr>
+    <tr>
+      <td>hipertenso</td>
+      <td>117</td>
+      <td>0.356707</td>
+      <td>328</td>
+    </tr>
+    <tr>
+      <td>doencas_cardiacas</td>
+      <td>123</td>
+      <td>0.375000</td>
+      <td>328</td>
+    </tr>
+    <tr>
+      <td>doencas_respiratorias</td>
+      <td>51</td>
+      <td>0.155488</td>
+      <td>328</td>
+    </tr>
+    <tr>
+      <td>doencas_metabolicas</td>
+      <td>104</td>
+      <td>0.317073</td>
+      <td>328</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_desfecho.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ALTA</td>
+      <td>145</td>
+      <td>0.442073</td>
+    </tr>
+    <tr>
+      <td>INTERNAMENTO</td>
+      <td>117</td>
+      <td>0.356707</td>
+    </tr>
+    <tr>
+      <td>ENCAMINHAMENTO</td>
+      <td>48</td>
+      <td>0.146341</td>
+    </tr>
+    <tr>
+      <td>OBITO</td>
+      <td>17</td>
+      <td>0.051829</td>
+    </tr>
+    <tr>
+      <td>OUTRO</td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_desfecho_padronizado.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ALTA</td>
+      <td>145</td>
+      <td>0.442073</td>
+    </tr>
+    <tr>
+      <td>INTERNAMENTO</td>
+      <td>117</td>
+      <td>0.356707</td>
+    </tr>
+    <tr>
+      <td>ENCAMINHAMENTO</td>
+      <td>48</td>
+      <td>0.146341</td>
+    </tr>
+    <tr>
+      <td>OBITO</td>
+      <td>17</td>
+      <td>0.051829</td>
+    </tr>
+    <tr>
+      <td>OUTRO</td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_diabetico.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NAO</td>
+      <td>259</td>
+      <td>0.789634</td>
+    </tr>
+    <tr>
+      <td>SIM</td>
+      <td>69</td>
+      <td>0.210366</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_doencas_cardiacas.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NAO</td>
+      <td>204</td>
+      <td>0.621951</td>
+    </tr>
+    <tr>
+      <td>SIM</td>
+      <td>123</td>
+      <td>0.375000</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_doencas_metabolicas.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NAO</td>
+      <td>223</td>
+      <td>0.679878</td>
+    </tr>
+    <tr>
+      <td>SIM</td>
+      <td>104</td>
+      <td>0.317073</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_doencas_respiratorias.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NAO</td>
+      <td>276</td>
+      <td>0.841463</td>
+    </tr>
+    <tr>
+      <td>SIM</td>
+      <td>51</td>
+      <td>0.155488</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_duracao_horas.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>n</th>
+      <th>media</th>
+      <th>mediana</th>
+      <th>min</th>
+      <th>max</th>
+      <th>desvio_padrao</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>327</td>
+      <td>0.111151</td>
+      <td>0.08</td>
+      <td>0.005</td>
+      <td>0.608889</td>
+      <td>0.108392</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_etilista.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NAO</td>
+      <td>261</td>
+      <td>0.795732</td>
+    </tr>
+    <tr>
+      <td>SIM</td>
+      <td>66</td>
+      <td>0.201220</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_habitos_vida.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>habito</th>
+      <th>sim_absoluta</th>
+      <th>sim_relativa</th>
+      <th>n_valido</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>tabagista</td>
+      <td>106</td>
+      <td>0.323171</td>
+      <td>328</td>
+    </tr>
+    <tr>
+      <td>etilista</td>
+      <td>66</td>
+      <td>0.201220</td>
+      <td>328</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_hipertenso.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NAO</td>
+      <td>211</td>
+      <td>0.643293</td>
+    </tr>
+    <tr>
+      <td>SIM</td>
+      <td>117</td>
+      <td>0.356707</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_idade_numerica.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>n</th>
+      <th>media</th>
+      <th>mediana</th>
+      <th>min</th>
+      <th>max</th>
+      <th>desvio_padrao</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>328</td>
+      <td>52.759146</td>
+      <td>53.0</td>
+      <td>18</td>
+      <td>99</td>
+      <td>21.739912</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_neoplasias.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NAO</td>
+      <td>321</td>
+      <td>0.978659</td>
+    </tr>
+    <tr>
+      <td>SIM</td>
+      <td>6</td>
+      <td>0.018293</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_saude_mental.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NAO</td>
+      <td>248</td>
+      <td>0.756098</td>
+    </tr>
+    <tr>
+      <td>SIM</td>
+      <td>80</td>
+      <td>0.243902</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_setor_destinado.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EIXO CRITICO</td>
+      <td>171</td>
+      <td>0.521341</td>
+    </tr>
+    <tr>
+      <td>EIXO DECISAO</td>
+      <td>127</td>
+      <td>0.387195</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>27</td>
+      <td>0.082317</td>
+    </tr>
+    <tr>
+      <td>SUTURA</td>
+      <td>2</td>
+      <td>0.006098</td>
+    </tr>
+    <tr>
+      <td>EIXO ISOLAMENTO</td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_tabagista.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NAO</td>
+      <td>221</td>
+      <td>0.673780</td>
+    </tr>
+    <tr>
+      <td>SIM</td>
+      <td>106</td>
+      <td>0.323171</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_tempo_permanencia.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ATE_6H</td>
+      <td>120</td>
+      <td>0.365854</td>
+    </tr>
+    <tr>
+      <td>MAIS_24H</td>
+      <td>87</td>
+      <td>0.265244</td>
+    </tr>
+    <tr>
+      <td>ATE_24H</td>
+      <td>69</td>
+      <td>0.210366</td>
+    </tr>
+    <tr>
+      <td>ATE_12H</td>
+      <td>51</td>
+      <td>0.155488</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>clin_uso_spas.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NAO</td>
+      <td>288</td>
+      <td>0.878049</td>
+    </tr>
+    <tr>
+      <td>SIM</td>
+      <td>39</td>
+      <td>0.118902</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0.003049</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>demo_faixa_etaria.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>18-40</td>
+      <td>116</td>
+      <td>0.353659</td>
+    </tr>
+    <tr>
+      <td>40-60</td>
+      <td>85</td>
+      <td>0.259146</td>
+    </tr>
+    <tr>
+      <td>60-80</td>
+      <td>80</td>
+      <td>0.243902</td>
+    </tr>
+    <tr>
+      <td>80-100</td>
+      <td>47</td>
+      <td>0.143293</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+<details><summary>demo_sexo.csv</summary>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>valor</th>
+      <th>absoluta</th>
+      <th>relativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>M</td>
+      <td>178</td>
+      <td>0.542683</td>
+    </tr>
+    <tr>
+      <td>F</td>
+      <td>150</td>
+      <td>0.457317</td>
+    </tr>
+  </tbody>
+</table>
+</details>
+</div>
+
+</body></html>
