@@ -7,6 +7,9 @@ Amostra atual: **328** registros (abril + maio/2025).
 
 ## Como navegar
 
+Se esta é sua primeira vez na pasta `reports/`, comece pelo guia
+[`../COMO_NAVEGAR.md`](../COMO_NAVEGAR.md).
+
 1. Comece pelos arquivos `demo_*` (perfil demográfico).
 2. Em seguida, use os resumos agrupados `clin_desfecho`,
    `clin_setor_destinado`, `clin_comorbidades`, `clin_habitos_vida` e

@@ -10,12 +10,13 @@ não é necessário saber programar para navegar pelos arquivos.
 
 | Ordem | Arquivo / pasta | O que você encontra |
 |------:|-----------------|---------------------|
-| 1 | [`profile_report_minimal.html`](profile_report_minimal.html) | Visão completa em HTML (recomendada) |
-| 2 | [`descriptive/README.md`](descriptive/README.md) | Como ler as tabelas descritivas |
-| 3 | [`figures/README.md`](figures/README.md) | Lista e sentido de cada gráfico |
-| 4 | [`association_results.md`](association_results.md) | Como interpretar χ² / Kruskal / p-valor |
-| 5 | [`correlation_results.md`](correlation_results.md) | Como interpretar Pearson / Spearman e IC 95% |
-| 6 | [`../docs/depara_normalizacoes.md`](../docs/depara_normalizacoes.md) | De-para original → padronizado |
+| 1 | [`COMO_NAVEGAR.md`](COMO_NAVEGAR.md) | Guia passo a passo para a enfermagem |
+| 2 | [`profile_report_minimal.html`](profile_report_minimal.html) | Visão completa em HTML (recomendada) |
+| 3 | [`descriptive/README.md`](descriptive/README.md) | Como ler as tabelas descritivas |
+| 4 | [`figures/README.md`](figures/README.md) | Lista e sentido de cada gráfico |
+| 5 | [`association_results.md`](association_results.md) | Como interpretar χ² / Kruskal / p-valor |
+| 6 | [`correlation_results.md`](correlation_results.md) | Como interpretar Pearson / Spearman e IC 95% |
+| 7 | [`../docs/depara_normalizacoes.md`](../docs/depara_normalizacoes.md) | De-para original → padronizado |
 
 ## Mapa dos arquivos
 
@@ -53,6 +54,12 @@ não é necessário saber programar para navegar pelos arquivos.
 - [`profile_report.html`](profile_report.html) — tema clássico
 - [`profile_report_minimal.html`](profile_report_minimal.html) — tema
   minimal (melhor para leitura)
+
+Os dois arquivos são **autocontidos**: as figuras PNG ficam gravadas
+dentro do HTML (base64), então continuam visíveis após download ou
+envio por e-mail. Os gráficos interativos (Plotly) são carregados por
+CDN e exigem internet; cada um tem uma versão estática equivalente em
+[`figures/`](figures/).
 
 ## Como regenerar tudo
 

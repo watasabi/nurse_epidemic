@@ -15,6 +15,7 @@ ou apresentação.
 | `setor_bar.png` | Setor destinado na UPA | Fluxo assistencial |
 | `doencas_upa_trend.png` | Contagens por grupo de doença × mês/UPA | Contexto epidemiológico externo |
 | `association_phik_matrix.png` | Mapa de calor PhiK (0–1) | Visão geral de associações |
+| `association_pvalues.png` | -log10(p) por variável testada | Ranking de evidência estatística |
 
 ## Como interpretar
 
@@ -27,6 +28,9 @@ ou apresentação.
   entre o par de variáveis; próximos de **0**, associação fraca.
   Complementa (não substitui) os p-valores de
   [`../association_results.md`](../association_results.md).
+- `association_pvalues.png`: barra maior = evidência mais forte. A
+  linha tracejada vermelha marca p = 0,05; barras azuis ultrapassam
+  esse limite (associação significativa), cinzas não.
 
 ## Como usar
 

@@ -16,6 +16,7 @@
   <summary>Tabela de Conteúdos</summary>
   <ol>
     <li><a href="#sobre-o-projeto">Sobre o Projeto</a></li>
+    <li><a href="#para-a-equipe-clinica">Para a Equipe Clínica</a></li>
     <li><a href="#inicio-rapido">Início Rápido</a></li>
     <li><a href="#pipeline-de-analise">Pipeline de Análise</a></li>
     <li><a href="#de-para-de-normalizacoes">De-para de Normalizações</a></li>
@@ -42,10 +43,27 @@ O pipeline cobre:
    de tendência/dispersão
 3. **Inferência** — χ²/Fisher, Mann-Whitney/Kruskal-Wallis, PhiK
 4. **Correlações** — Pearson/Spearman com IC 95%
-5. **Relatórios** — CSVs, figuras PNG e HTML (classic + minimal)
+5. **Relatórios** — CSVs, figuras PNG e HTML autocontido (classic +
+   minimal), com gráficos interativos Plotly
 
 Amostra processada atual: **328 atendimentos** (abas `ABRIL_2025` +
 `MAIO_2025`).
+
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
+
+## Para a Equipe Clínica
+
+Não é preciso programar para usar os resultados. Comece por
+[`reports/COMO_NAVEGAR.md`](reports/COMO_NAVEGAR.md) — guia em
+linguagem simples sobre o que há em cada pasta, como ler as tabelas e
+como interpretar os testes.
+
+Para a visão completa, abra
+[`reports/profile_report_minimal.html`](reports/profile_report_minimal.html)
+no navegador. As figuras PNG ficam embutidas no arquivo (base64),
+então continuam visíveis mesmo após download ou envio por e-mail; os
+gráficos interativos (Plotly via CDN) exigem internet e têm
+equivalente estático em `reports/figures/`.
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
@@ -97,6 +115,7 @@ Excel multi-aba
 | Associações | `reports/association_results.csv` / `.md` |
 | PhiK | `reports/association_phik_matrix.csv` |
 | Correlações | `reports/correlation_results.csv` |
+| Figuras | `reports/figures/*.png` |
 | HTML | `reports/profile_report.html` |
 | HTML minimal | `reports/profile_report_minimal.html` |
 
@@ -128,11 +147,12 @@ O de-para é regenerado automaticamente em cada execução de
 │   ├── plano_implementacao_upa.md    # Plano técnico de implementação
 │   └── depara_normalizacoes.md       # De-para legível
 ├── reports/
+│   ├── COMO_NAVEGAR.md               # Guia para a enfermagem
 │   ├── export_clinical_summaries.py
 │   ├── generate_profile_report.py
 │   ├── descriptive/                  # CSVs demo_* / clin_*
 │   ├── figures/                      # PNGs
-│   └── profile_report*.html
+│   └── profile_report*.html          # HTML autocontido (base64)
 ├── src/nurse_epidemic/
 │   ├── schemas/columns.py
 │   ├── io/loaders.py
@@ -151,6 +171,7 @@ O de-para é regenerado automaticamente em cada execução de
 
 | Recurso | Link |
 |---------|------|
+| Guia de navegação (enfermagem) | [`reports/COMO_NAVEGAR.md`](reports/COMO_NAVEGAR.md) |
 | Plano de desenvolvimento | [`docs/plano_de_desenvolvimento.md`](docs/plano_de_desenvolvimento.md) |
 | Plano de implementação | [`docs/plano_implementacao_upa.md`](docs/plano_implementacao_upa.md) |
 | De-para de normalizações | [`docs/depara_normalizacoes.md`](docs/depara_normalizacoes.md) |
