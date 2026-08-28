@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -177,6 +178,29 @@ def export_figures(clean: pd.DataFrame) -> list[Path]:
     paths.append(phik_path)
 
     return paths
+
+
+def _save_pvalue_chart(results: pd.DataFrame) -> Path:
+    """Gera figura estática de -log10(p) por variável."""
+    FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+    path = FIGURES_DIR / "association_pvalues.png"
+    plot_df = results.copy()
+    plot_df["neg_log10_p"] = plot_df["p_value"].apply(
+        lambda p: -math.log10(p) if pd.notna(p) and p > 0 else 0.0
+    )
+    plot_df = plot_df.sort_values("neg_log10_p")
+    colors = [
+        "#0071e3" if p < ALPHA else "#9aa0a6" for p in plot_df["p_value"]
+    ]
+    fig, ax = plt.subplots(figsize=(10, max(4, 0.5 * len(plot_df))))
+    ax.barh(plot_df["variable"], plot_df["neg_log10_p"], color=colors)
+    ax.axvline(-math.log10(ALPHA), color="#d93025", linestyle="--")
+    ax.set_xlabel("-log10(p)")
+    ax.set_title("Significância dos testes (barra maior = evidência maior)")
+    fig.tight_layout()
+    fig.savefig(path, dpi=120, bbox_inches="tight")
+    plt.close(fig)
+    return path
 
 
 def _test_label(test_name: str) -> str:
@@ -442,6 +466,7 @@ def export_association(clean: pd.DataFrame) -> Path:
     out_path = REPORTS_DIR / "association_results.csv"
     results.to_csv(out_path, index=False)
     _write_association_markdown(results, n_patients=len(clean))
+    _save_pvalue_chart(results)
     return out_path
 
 
