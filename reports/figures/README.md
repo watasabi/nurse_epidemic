@@ -16,7 +16,7 @@ ou apresentação.
 | `fluxograma_bar.png` | Top 15 fluxogramas de classificação de risco | Perfil de queixas na triagem |
 | `discriminador_bar.png` | Top 15 discriminadores de classificação de risco | Critérios de prioridade na triagem |
 | `association_phik_matrix.png` | Mapa de calor PhiK (0–1) | Visão geral de associações |
-| `association_pvalues.png` | -log10(p) por variável testada | Ranking de evidência estatística |
+| `association_pvalues.png` | -log10(p) de cada variável clínica **vs. o desfecho padronizado** | Ranking de evidência estatística |
 
 ## Como interpretar
 
@@ -30,9 +30,15 @@ ou apresentação.
   entre o par de variáveis; próximos de **0**, associação fraca.
   Complementa (não substitui) os p-valores de
   [`../association_results.md`](../association_results.md).
-- `association_pvalues.png`: barra maior = evidência mais forte. A
-  linha tracejada vermelha marca p = 0,05; barras azuis ultrapassam
-  esse limite (associação significativa), cinzas não.
+- `association_pvalues.png`: **cada barra já é a variável cruzada
+  com o desfecho** (ex.: `doencas_cardiacas` = doenças cardíacas ×
+  desfecho padronizado). O gráfico não mistura variáveis entre si —
+  a comparação é sempre "variável clínica" vs. "desfecho". Barra
+  maior = evidência mais forte. A linha tracejada vermelha marca
+  p = 0,05; barras azuis ultrapassam esse limite (associação
+  significativa), cinzas não. Os números exatos (incluindo a coluna
+  `target`, que confirma o desfecho como alvo) estão em
+  `../association_results.csv`.
 
 ## Como usar
 

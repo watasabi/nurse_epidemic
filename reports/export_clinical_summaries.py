@@ -206,11 +206,20 @@ def _save_pvalue_chart(results: pd.DataFrame) -> Path:
     colors = [
         "#0071e3" if p < ALPHA else "#9aa0a6" for p in plot_df["p_value"]
     ]
+    target = (
+        str(plot_df["target"].iloc[0])
+        if not plot_df.empty
+        else COL_DESFECHO_PADRONIZADO
+    )
     fig, ax = plt.subplots(figsize=(10, max(4, 0.5 * len(plot_df))))
     ax.barh(plot_df["variable"], plot_df["neg_log10_p"], color=colors)
     ax.axvline(-math.log10(ALPHA), color="#d93025", linestyle="--")
     ax.set_xlabel("-log10(p)")
-    ax.set_title("Significância dos testes (barra maior = evidência maior)")
+    ax.set_ylabel(f"Variável testada (cada uma vs. {target})")
+    ax.set_title(
+        "Significância dos testes: cada variável vs. "
+        f"{target}\n(barra maior = evidência maior)"
+    )
     fig.tight_layout()
     fig.savefig(path, dpi=120, bbox_inches="tight")
     plt.close(fig)

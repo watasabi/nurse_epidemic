@@ -53,7 +53,10 @@ FIGURE_CAPTIONS: dict[str, str] = {
         "Discriminadores mais frequentes (classificação de risco)"
     ),
     "association_phik_matrix.png": "Matriz de associação PhiK",
-    "association_pvalues.png": "Significância dos testes (-log10 do p)",
+    "association_pvalues.png": (
+        "Significância dos testes: cada variável vs. desfecho "
+        "padronizado (-log10 do p)"
+    ),
 }
 
 CSS_CLASSIC = """
