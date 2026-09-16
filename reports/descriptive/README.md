@@ -12,8 +12,9 @@ Se esta é sua primeira vez na pasta `reports/`, comece pelo guia
 
 1. Comece pelos arquivos `demo_*` (perfil demográfico).
 2. Em seguida, use os resumos agrupados `clin_desfecho`,
-   `clin_setor_destinado`, `clin_comorbidades`, `clin_habitos_vida` e
-   `clin_tempo_permanencia` — são os mais úteis para o texto do artigo.
+   `clin_setor_destinado`, `clin_comorbidades`, `clin_habitos_vida`,
+   `clin_tempo_permanencia`, `clin_fluxograma` e `clin_discriminador`
+   — são os mais úteis para o texto do artigo.
 3. Os demais `clin_*` detalham cada variável individualmente.
 
 ## Arquivos incluídos
@@ -33,6 +34,10 @@ Se esta é sua primeira vez na pasta `reports/`, comece pelo guia
 - `clin_tempo_permanencia.csv` — categorias ATE_6H … MAIS_24H
 - `clin_comorbidades.csv` — prevalência (SIM) por tipo de comorbidade
 - `clin_habitos_vida.csv` — tabagismo e etilismo
+- `clin_fluxograma.csv` — fluxograma de classificação de risco
+  (protocolo de Manchester) usado no atendimento
+- `clin_discriminador.csv` — discriminador de classificação de risco
+  (o sintoma/sinal que define a prioridade dentro do fluxograma)
 
 ### Variáveis clínicas individuais (`clin_*`)
 

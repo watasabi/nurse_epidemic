@@ -13,8 +13,10 @@ from nurse_epidemic.schemas.columns import (
     COL_DATA_INICIO,
     COL_DESFECHO,
     COL_DESFECHO_PADRONIZADO,
+    COL_DISCRIMINADOR,
     COL_DURACAO_HORAS,
     COL_FAIXA_ETARIA,
+    COL_FLUXOGRAMA,
     COL_HORA_FIM,
     COL_HORA_INICIO,
     COL_IDADE_NUMERICA,
@@ -38,6 +40,7 @@ def normalize_text(value: object) -> str | None:
         return None
     text = unicodedata.normalize("NFKD", text)
     text = "".join(c for c in text if not unicodedata.combining(c))
+    text = re.sub(r"\s+", " ", text).strip()
     return text.upper()
 
 
@@ -191,6 +194,12 @@ def clean_and_standardize(df: pd.DataFrame) -> pd.DataFrame:
 
     if COL_SETOR_DESTINADO in out.columns:
         out[COL_SETOR_DESTINADO] = out[COL_SETOR_DESTINADO].map(normalize_text)
+
+    if COL_FLUXOGRAMA in out.columns:
+        out[COL_FLUXOGRAMA] = out[COL_FLUXOGRAMA].map(normalize_text)
+
+    if COL_DISCRIMINADOR in out.columns:
+        out[COL_DISCRIMINADOR] = out[COL_DISCRIMINADOR].map(normalize_text)
 
     if COL_TEMPO_PERMANENCIA in out.columns:
         out[COL_TEMPO_PERMANENCIA] = out[COL_TEMPO_PERMANENCIA].map(

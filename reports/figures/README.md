@@ -1,7 +1,7 @@
 # Figuras (gráficos)
 
-Gráficos gerados automaticamente a partir da base processada e do
-arquivo auxiliar `data/external/doencas_upa.csv`.
+Gráficos gerados automaticamente a partir da base processada do
+estudo (UPA única, período abril–maio/2025).
 
 Formato: PNG, resolução ≥ 120 dpi — adequados para inserção no artigo
 ou apresentação.
@@ -13,7 +13,8 @@ ou apresentação.
 | `sexo_bar.png` | Contagem por sexo | Perfil demográfico |
 | `desfecho_bar.png` | Desfecho padronizado | Resultado principal do estudo |
 | `setor_bar.png` | Setor destinado na UPA | Fluxo assistencial |
-| `doencas_upa_trend.png` | Contagens por grupo de doença × mês/UPA | Contexto epidemiológico externo |
+| `fluxograma_bar.png` | Top 15 fluxogramas de classificação de risco | Perfil de queixas na triagem |
+| `discriminador_bar.png` | Top 15 discriminadores de classificação de risco | Critérios de prioridade na triagem |
 | `association_phik_matrix.png` | Mapa de calor PhiK (0–1) | Visão geral de associações |
 | `association_pvalues.png` | -log10(p) por variável testada | Ranking de evidência estatística |
 
@@ -21,9 +22,10 @@ ou apresentação.
 
 - Barras horizontais: categorias no eixo vertical; tamanho da barra =
   quantidade absoluta de pacientes.
-- `doencas_upa_trend.png`: cada grupo de doença tem várias barras
-  (período × UPA). Serve para contextualizar o volume por tipo de
-  agravo, **não** é o mesmo N da amostra de 328 prontuários.
+- `fluxograma_bar.png` e `discriminador_bar.png` mostram só as 15
+  categorias mais frequentes (a lista completa, com todas as
+  categorias, está em `../descriptive/clin_fluxograma.csv` e
+  `../descriptive/clin_discriminador.csv`).
 - Matriz PhiK: valores próximos de **1** indicam associação forte
   entre o par de variáveis; próximos de **0**, associação fraca.
   Complementa (não substitui) os p-valores de

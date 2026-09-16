@@ -118,10 +118,13 @@ A matriz PhiK (mapa de calor azul) é um complemento: vai de 0
    `clin_setor_destinado.csv`, `clin_comorbidades.csv`,
    `clin_habitos_vida.csv` e `clin_tempo_permanencia.csv`. Sempre cite
    o n junto da porcentagem.
-3. **Resultados inferenciais** — use `association_results.md` e a
+3. **Classificação de risco** — use `clin_fluxograma.csv` e
+   `clin_discriminador.csv` para descrever os fluxogramas e
+   discriminadores mais usados na triagem (protocolo de Manchester).
+4. **Resultados inferenciais** — use `association_results.md` e a
    tabela `association_results.csv`.
-4. **Figuras** — escolha em `figures/` as que ilustram cada parágrafo.
-5. **Discussão** — apoie-se nas variáveis significativas e nas
+5. **Figuras** — escolha em `figures/` as que ilustram cada parágrafo.
+6. **Discussão** — apoie-se nas variáveis significativas e nas
    correlações de `correlation_results.md`.
 
 ## 7. Perguntas frequentes

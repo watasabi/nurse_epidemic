@@ -40,13 +40,18 @@ CLINICAL_SUMMARY_FILES = {
     "Comorbidades": "clin_comorbidades.csv",
     "Hábitos de vida": "clin_habitos_vida.csv",
     "Tempo de permanência": "clin_tempo_permanencia.csv",
+    "Fluxograma (classificação de risco)": "clin_fluxograma.csv",
+    "Discriminador (classificação de risco)": "clin_discriminador.csv",
 }
 
 FIGURE_CAPTIONS: dict[str, str] = {
     "sexo_bar.png": "Distribuição por sexo",
     "desfecho_bar.png": "Desfecho clínico padronizado",
     "setor_bar.png": "Setor destinado",
-    "doencas_upa_trend.png": "Doenças por grupo, mês e UPA",
+    "fluxograma_bar.png": "Fluxogramas mais frequentes (classificação de risco)",
+    "discriminador_bar.png": (
+        "Discriminadores mais frequentes (classificação de risco)"
+    ),
     "association_phik_matrix.png": "Matriz de associação PhiK",
     "association_pvalues.png": "Significância dos testes (-log10 do p)",
 }

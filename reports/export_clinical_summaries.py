@@ -25,7 +25,8 @@ from nurse_epidemic.stats.association import (
 from nurse_epidemic.stats.clinical_summaries import (
     comorbidades_table,
     desfecho_table,
-    doencas_upa_long,
+    discriminador_table,
+    fluxograma_table,
     habitos_vida_table,
     setor_destinado_table,
     tempo_permanencia_table,
@@ -78,6 +79,8 @@ def export_tables(clean: pd.DataFrame) -> list[Path]:
         "clin_comorbidades": comorbidades_table(clean),
         "clin_habitos_vida": habitos_vida_table(clean),
         "clin_tempo_permanencia": tempo_permanencia_table(clean),
+        "clin_fluxograma": fluxograma_table(clean),
+        "clin_discriminador": discriminador_table(clean),
     }
     summary_paths = export_report(summary_tables, DESCRIPTIVE_DIR)
     return demo_paths + clin_paths + summary_paths
@@ -145,26 +148,37 @@ def export_figures(clean: pd.DataFrame) -> list[Path]:
         )
     )
 
-    doencas = doencas_upa_long()
-    pivot = doencas.pivot_table(
-        index="grupo_doenca",
-        columns="periodo_upa",
-        values="contagem",
-        aggfunc="sum",
-        fill_value=0,
+    TOP_N_CATEGORIES = 15
+
+    fluxograma = fluxograma_table(clean).nlargest(
+        TOP_N_CATEGORIES, "absoluta"
     )
-    fig, ax = plt.subplots(figsize=(12, 6))
-    pivot.plot(kind="bar", ax=ax, width=0.8)
-    ax.set_title("Doenças por grupo, mês e UPA")
-    ax.set_xlabel("Grupo de doença")
-    ax.set_ylabel("Contagem")
-    ax.legend(title="Período/UPA", bbox_to_anchor=(1.02, 1), loc="upper left")
-    fig.tight_layout()
-    doencas_path = FIGURES_DIR / "doencas_upa_trend.png"
-    FIGURES_DIR.mkdir(parents=True, exist_ok=True)
-    fig.savefig(doencas_path, dpi=120, bbox_inches="tight")
-    plt.close(fig)
-    paths.append(doencas_path)
+    paths.append(
+        _save_bar(
+            fluxograma.rename(columns={"valor": "fluxograma"}),
+            BarChartSpec(
+                "fluxograma",
+                "absoluta",
+                "Fluxogramas mais frequentes na classificação de risco",
+                "fluxograma_bar.png",
+            ),
+        )
+    )
+
+    discriminador = discriminador_table(clean).nlargest(
+        TOP_N_CATEGORIES, "absoluta"
+    )
+    paths.append(
+        _save_bar(
+            discriminador.rename(columns={"valor": "discriminador"}),
+            BarChartSpec(
+                "discriminador",
+                "absoluta",
+                "Discriminadores mais frequentes na classificação de risco",
+                "discriminador_bar.png",
+            ),
+        )
+    )
 
     phik = phik_association_matrix(clean)
     phik.to_csv(REPORTS_DIR / "association_phik_matrix.csv")

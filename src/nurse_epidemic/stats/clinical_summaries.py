@@ -2,26 +2,23 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-
 import pandas as pd
 
 from nurse_epidemic.schemas.columns import (
     COL_DESFECHO_PADRONIZADO,
     COL_DIABETICO,
+    COL_DISCRIMINADOR,
     COL_DOENCAS_CARDIACAS,
     COL_DOENCAS_METABOLICAS,
     COL_DOENCAS_RESPIRATORIAS,
     COL_ETILISTA,
+    COL_FLUXOGRAMA,
     COL_HIPERTENSO,
     COL_SETOR_DESTINADO,
     COL_TABAGISTA,
     COL_TEMPO_PERMANENCIA,
 )
 from nurse_epidemic.stats.descriptive import frequency_table
-
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
-DOENCAS_UPA_PATH = PROJECT_ROOT / "data" / "external" / "doencas_upa.csv"
 
 
 def desfecho_table(df: pd.DataFrame) -> pd.DataFrame:
@@ -32,6 +29,16 @@ def desfecho_table(df: pd.DataFrame) -> pd.DataFrame:
 def setor_destinado_table(df: pd.DataFrame) -> pd.DataFrame:
     """Frequência por setor destinado."""
     return frequency_table(df[COL_SETOR_DESTINADO])
+
+
+def fluxograma_table(df: pd.DataFrame) -> pd.DataFrame:
+    """Frequência dos fluxogramas de classificação de risco."""
+    return frequency_table(df[COL_FLUXOGRAMA])
+
+
+def discriminador_table(df: pd.DataFrame) -> pd.DataFrame:
+    """Frequência dos discriminadores de classificação de risco."""
+    return frequency_table(df[COL_DISCRIMINADOR])
 
 
 def tempo_permanencia_table(df: pd.DataFrame) -> pd.DataFrame:
@@ -85,19 +92,3 @@ def habitos_vida_table(df: pd.DataFrame) -> pd.DataFrame:
             }
         )
     return pd.DataFrame(rows)
-
-
-def doencas_upa_long(path: Path | str = DOENCAS_UPA_PATH) -> pd.DataFrame:
-    """Transforma doencas_upa.csv em formato longo para gráficos."""
-    path = Path(path)
-    raw = pd.read_csv(path)
-    id_col = raw.columns[0]
-    value_cols = [c for c in raw.columns if c != id_col and "Total" not in c]
-    long = raw.melt(
-        id_vars=[id_col],
-        value_vars=value_cols,
-        var_name="periodo_upa",
-        value_name="contagem",
-    )
-    long = long.rename(columns={id_col: "grupo_doenca"})
-    return long

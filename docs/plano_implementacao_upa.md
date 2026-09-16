@@ -10,7 +10,7 @@ arquitetura do `tcr_community` / `nursing-health-reports` para o dataset
 | Item | Estado atual |
 |------|--------------|
 | Dados principais | `data/raw/Planilha de dados- Estátistico.xlsx` — abas `ABRIL_2025` (155) + `MAIO_2025` (173) = **328 atendimentos** |
-| Dados auxiliares | `data/external/doencas_upa.csv` — contagens agregadas por grupo de doença/mês/UPA |
+| Dados auxiliares | ~~`data/external/doencas_upa.csv`~~ — removido: continha dados de outras UPAs/meses (jan/mar/jul/set, UPA 1 e 2) fora do escopo deste estudo (UPA única, abril–maio/2025) |
 | Código | `src/` vazio; notebook exploratório em `notebooks/processing/00_first_processing.ipynb` (usa ODS antigo, não o Excel atual) |
 | Referência | `/home/rwp/code/nurse/tcr_community` — módulos `schemas`, `cleaning`, `pipeline`, `stats`, `reports` |
 
@@ -37,7 +37,6 @@ flowchart LR
   corr --> corrOut["correlation_results.csv"]
   csv --> html["generate_profile_report.py"]
   assocOut --> html
-  doencas["doencas_upa.csv"] --> figs["reports/figures/"]
 ```
 
 ---
@@ -182,12 +181,11 @@ Funções UPA-específicas:
 - `desfecho_table`, `setor_destinado_table`, `comorbidades_table`
 - `habitos_vida_table` (tabagismo + etilismo)
 - `tempo_permanencia_table`
-- `doencas_upa_long()` — melt de `doencas_upa.csv` para gráfico temporal
 
 ### `reports/export_clinical_summaries.py`
 
 - Prefixos: `demo_*` (sexo, faixa etária), `clin_*` (comorbidades, desfecho, setor, tempo)
-- Figuras PNG (≥120 dpi): barras horizontais desfecho, setor, sexo; tendência doencas_upa
+- Figuras PNG (≥120 dpi): barras horizontais desfecho, setor, sexo
 - Chama `prepare_data()` se parquet ausente
 
 ---
