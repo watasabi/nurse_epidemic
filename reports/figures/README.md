@@ -3,7 +3,7 @@
 Gráficos gerados automaticamente a partir da base processada do
 estudo (UPA única, período abril–maio/2025).
 
-Formato: PNG, resolução ≥ 120 dpi — adequados para inserção no artigo
+Formato: PNG, resolução ≥ 120 dpi (Venn: 300 dpi) — adequados para inserção no artigo
 ou apresentação.
 
 ## Gráficos disponíveis
@@ -16,6 +16,12 @@ ou apresentação.
 | `fluxograma_bar.png` | Top 15 fluxogramas de classificação de risco | Perfil de queixas na triagem |
 | `discriminador_bar.png` | Top 15 discriminadores de classificação de risco | Critérios de prioridade na triagem |
 | `association_phik_matrix.png` | Mapa de calor PhiK (0–1) | Visão geral de associações |
+| `venn_cardiacas_hipertensao.png` | Hipertensão (verde) dentro das doenças cardíacas; outras cardíacas sem HAS (azul) | Comorbidades — esquema, áreas não proporcionais |
+| `venn_metabolicas_diabetes.png` | Diabetes (roxo) dentro das doenças metabólicas; outras metabólicas sem DM (rosa) | Comorbidades — esquema, áreas não proporcionais |
+| `venn_has_diabetes.png` | Venn hipertensão × diabetes | Comorbidades associadas |
+| `venn_comorbidades.png` | Venn cardíacas × metabólicas × respiratórias crônicas | Multimorbidade |
+| `venn_habitos.png` | Venn tabagismo × etilismo | Hábitos de vida |
+| `venn_habitos_spas.png` | Venn tabagismo × etilismo × uso de SPAs | Hábitos de vida |
 | `association_pvalues.png` | -log10(p) de cada variável clínica **vs. o desfecho padronizado** | Ranking de evidência estatística |
 
 ## Como interpretar
@@ -39,6 +45,12 @@ ou apresentação.
   significativa), cinzas não. Os números exatos (incluindo a coluna
   `target`, que confirma o desfecho como alvo) estão em
   `../association_results.csv`.
+
+- Diagramas de Venn (`venn_*.png`, 300 dpi): cada número dentro de
+  uma região conta pacientes **só** daquela combinação; o número junto
+  do nome do círculo é o total da condição. Rodapé traz o n e quantos
+  não têm nenhuma das condições. Tabelas e leitura em
+  [`../comorbidades_habitos_venn.md`](../comorbidades_habitos_venn.md).
 
 ## Como usar
 

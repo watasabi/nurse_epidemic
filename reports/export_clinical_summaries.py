@@ -4,19 +4,43 @@
 from __future__ import annotations
 
 import math
+import textwrap
 from dataclasses import dataclass
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+from matplotlib_venn import venn2, venn3
 
-from nurse_epidemic.pipeline.prepare_data import PROCESSED_PATH, prepare_data
+from nurse_epidemic.cleaning.standardize import (
+    CARDIAC_HIERARCHY,
+    METABOLIC_HIERARCHY,
+    GroupHierarchy,
+    parse_yes_no,
+)
+from nurse_epidemic.pipeline.prepare_data import (
+    INTERIM_PATH,
+    PROCESSED_PATH,
+    prepare_data,
+)
 from nurse_epidemic.schemas.columns import (
     ASSOCIATION_PREDICTORS,
     COL_DESFECHO_PADRONIZADO,
+    COL_DIABETICO,
+    COL_DOENCAS_CARDIACAS,
+    COL_DOENCAS_METABOLICAS,
+    COL_DOENCAS_RESPIRATORIAS,
     COL_DURACAO_HORAS,
+    COL_ETILISTA,
+    COL_HIPERTENSO,
+    COL_LINHA_EXCEL,
+    COL_MES_COLETA,
+    COL_NEOPLASIAS,
+    COL_SAUDE_MENTAL,
     COL_SEXO,
+    COL_TABAGISTA,
+    COL_USO_SPAS,
 )
 from nurse_epidemic.stats.association import (
     phik_association_matrix,
@@ -37,6 +61,13 @@ from nurse_epidemic.stats.descriptive import (
     demographic_report,
     export_report,
 )
+from nurse_epidemic.stats.overlaps import (
+    hierarchy_inconsistencies,
+    multimorbidity_table,
+    nested_group_table,
+    venn_regions_table,
+    venn_subsets,
+)
 
 ALPHA = 0.05
 P_SCI_NOTATION = 0.0001
@@ -46,6 +77,75 @@ ROOT = Path(__file__).resolve().parents[1]
 DESCRIPTIVE_DIR = ROOT / "reports" / "descriptive"
 FIGURES_DIR = ROOT / "reports" / "figures"
 REPORTS_DIR = ROOT / "reports"
+
+# Paleta categórica validada (dataviz): azul, laranja, verde-água
+SERIES_COLORS = ("#2a78d6", "#eb6834", "#1baf7a")
+# Cores semânticas, próximas às marcações feitas na planilha
+COLOR_HAS = "#008300"
+COLOR_OUTRA_CARDIACA = "#2a78d6"
+COLOR_DM = "#6250d6"
+COLOR_OUTRA_METABOLICA = "#e87ba4"
+INK = "#0b0b0b"
+INK_MUTED = "#52514e"
+VENN_DPI = 300
+VENN_TWO_SETS = 2
+# Círculo interno do diagrama aninhado (o externo tem raio 1)
+INNER_X = 0.4
+INNER_R = 0.57
+
+CARDIAC_LABELS = (
+    "Doenças cardíacas",
+    "Hipertensão arterial (HAS)",
+    "Outra doença cardíaca, sem HAS",
+)
+METABOLIC_LABELS = (
+    "Doenças metabólicas",
+    "Diabetes mellitus (DM)",
+    "Outra doença metabólica, sem DM",
+)
+HAS_DM_SETS = {"HAS": COL_HIPERTENSO, "Diabetes": COL_DIABETICO}
+COMORBIDITY_SETS = {
+    "Doenças cardíacas": COL_DOENCAS_CARDIACAS,
+    "Doenças metabólicas": COL_DOENCAS_METABOLICAS,
+    "Doenças respiratórias crônicas": COL_DOENCAS_RESPIRATORIAS,
+}
+HABITS_SETS = {"Tabagista": COL_TABAGISTA, "Etilista": COL_ETILISTA}
+HABITS_SPAS_SETS = {
+    "Tabagista": COL_TABAGISTA,
+    "Etilista": COL_ETILISTA,
+    "Uso de SPAs": COL_USO_SPAS,
+}
+MULTIMORBIDITY_COLS = [
+    COL_DOENCAS_CARDIACAS,
+    COL_DOENCAS_METABOLICAS,
+    COL_DOENCAS_RESPIRATORIAS,
+    COL_NEOPLASIAS,
+    COL_SAUDE_MENTAL,
+]
+
+
+@dataclass(frozen=True)
+class VennSpec:
+    """Configuração de diagrama de Venn (2 ou 3 conjuntos)."""
+
+    sets: dict[str, str]
+    colors: tuple[str, ...]
+    title: str
+    filename: str
+
+
+@dataclass(frozen=True)
+class NestedVennSpec:
+    """Diagrama de um grupo que contém uma doença específica.
+
+    ``colors`` = (cor do grupo/"outras", cor da doença específica).
+    """
+
+    hierarchy: GroupHierarchy
+    labels: tuple[str, str, str]
+    colors: tuple[str, str]
+    title: str
+    filename: str
 
 
 @dataclass(frozen=True)
@@ -81,9 +181,51 @@ def export_tables(clean: pd.DataFrame) -> list[Path]:
         "clin_tempo_permanencia": tempo_permanencia_table(clean),
         "clin_fluxograma": fluxograma_table(clean),
         "clin_discriminador": discriminador_table(clean),
+        "clin_cardiacas_hipertensao": nested_group_table(
+            clean, CARDIAC_HIERARCHY, CARDIAC_LABELS
+        ),
+        "clin_metabolicas_diabetes": nested_group_table(
+            clean, METABOLIC_HIERARCHY, METABOLIC_LABELS
+        ),
+        "clin_venn_has_diabetes": venn_regions_table(clean, HAS_DM_SETS),
+        "clin_venn_comorbidades": venn_regions_table(clean, COMORBIDITY_SETS),
+        "clin_venn_habitos": venn_regions_table(clean, HABITS_SETS),
+        "clin_venn_habitos_spas": venn_regions_table(clean, HABITS_SPAS_SETS),
+        "clin_multimorbidade": multimorbidity_table(
+            clean, MULTIMORBIDITY_COLS
+        ),
     }
     summary_paths = export_report(summary_tables, DESCRIPTIVE_DIR)
     return demo_paths + clin_paths + summary_paths
+
+
+def export_color_qa() -> Path:
+    """Lista linhas em que as cores da planilha contradizem SIM/NAO.
+
+    Lê a base intermediária (antes da regra "todo hipertenso é
+    cardíaco"), para mostrar o que está de fato na planilha.
+    """
+    raw = pd.read_parquet(INTERIM_PATH)
+    yes_no_cols = [
+        COL_HIPERTENSO,
+        COL_DOENCAS_CARDIACAS,
+        COL_DIABETICO,
+        COL_DOENCAS_METABOLICAS,
+    ]
+    for col in yes_no_cols:
+        raw[col] = raw[col].map(parse_yes_no)
+    # Só aba + linha do Excel: o repositório é público, então nada de
+    # dados clínicos por paciente (sexo, idade, CID) neste arquivo
+    qa = pd.concat(
+        [
+            hierarchy_inconsistencies(raw, CARDIAC_HIERARCHY),
+            hierarchy_inconsistencies(raw, METABOLIC_HIERARCHY),
+        ],
+        ignore_index=True,
+    )
+    path = DESCRIPTIVE_DIR / "qa_inconsistencias_cores.csv"
+    qa.to_csv(path, index=False)
+    return path
 
 
 def _save_bar(df: pd.DataFrame, spec: BarChartSpec) -> Path:
@@ -100,6 +242,215 @@ def _save_bar(df: pd.DataFrame, spec: BarChartSpec) -> Path:
     fig.savefig(path, dpi=120, bbox_inches="tight")
     plt.close(fig)
     return path
+
+
+def _pct(value: float) -> str:
+    """Porcentagem com vírgula decimal (padrão ABNT)."""
+    return f"{value:.1%}".replace(".", ",")
+
+
+def _save_venn(df: pd.DataFrame, spec: VennSpec) -> Path:
+    """Desenha um Venn com contagem e % por região exclusiva."""
+    FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+    path = FIGURES_DIR / spec.filename
+    labels = list(spec.sets)
+    subsets = venn_subsets(df, list(spec.sets.values()))
+    n_valid = sum(subsets.values())
+    none_key = "0" * len(labels)
+    regions = {k: v for k, v in subsets.items() if k != none_key}
+    totals = [
+        sum(v for k, v in regions.items() if k[i] == "1")
+        for i in range(len(labels))
+    ]
+    set_labels = [
+        f"{lab}\nn = {tot} ({_pct(tot / n_valid)})"
+        for lab, tot in zip(labels, totals)
+    ]
+
+    fig, ax = plt.subplots(figsize=(7, 5.5))
+    draw = venn2 if len(labels) == VENN_TWO_SETS else venn3
+    diagram = draw(
+        subsets=regions,
+        set_labels=set_labels,
+        set_colors=spec.colors,
+        alpha=0.55,
+        ax=ax,
+    )
+    for key, count in regions.items():
+        patch = diagram.get_patch_by_id(key)
+        if patch is not None:
+            patch.set_edgecolor("white")
+            patch.set_linewidth(2)
+        text = diagram.get_label_by_id(key)
+        if text is None:
+            continue
+        if count == 0:
+            text.set_text("")
+            continue
+        text.set_text(f"{count}\n({_pct(count / n_valid)})")
+        text.set_fontsize(10)
+        text.set_color(INK)
+    for text in diagram.set_labels:
+        if text is not None:
+            text.set_fontsize(11)
+            text.set_fontweight("bold")
+            text.set_color(INK)
+
+    ax.set_title(spec.title, fontsize=13, color=INK, pad=14)
+    fig.text(
+        0.5,
+        0.02,
+        f"Pacientes com informação: n = {n_valid}. "
+        f"Sem nenhuma das condições: {subsets[none_key]} "
+        f"({_pct(subsets[none_key] / n_valid)}).",
+        ha="center",
+        fontsize=9,
+        color=INK_MUTED,
+    )
+    fig.savefig(path, dpi=VENN_DPI, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    return path
+
+
+VENN_SPECS = [
+    VennSpec(
+        sets=HAS_DM_SETS,
+        colors=(COLOR_HAS, COLOR_DM),
+        title="Hipertensão e diabetes",
+        filename="venn_has_diabetes.png",
+    ),
+    VennSpec(
+        sets=COMORBIDITY_SETS,
+        colors=SERIES_COLORS,
+        title="Sobreposição entre grupos de comorbidades",
+        filename="venn_comorbidades.png",
+    ),
+    VennSpec(
+        sets=HABITS_SETS,
+        colors=SERIES_COLORS[:2],
+        title="Tabagismo e etilismo",
+        filename="venn_habitos.png",
+    ),
+    VennSpec(
+        sets=HABITS_SPAS_SETS,
+        colors=SERIES_COLORS,
+        title="Tabagismo, etilismo e uso de SPAs",
+        filename="venn_habitos_spas.png",
+    ),
+]
+
+
+NESTED_VENN_SPECS = [
+    NestedVennSpec(
+        hierarchy=CARDIAC_HIERARCHY,
+        labels=CARDIAC_LABELS,
+        colors=(COLOR_OUTRA_CARDIACA, COLOR_HAS),
+        title="Hipertensão dentro das doenças cardíacas",
+        filename="venn_cardiacas_hipertensao.png",
+    ),
+    NestedVennSpec(
+        hierarchy=METABOLIC_HIERARCHY,
+        labels=METABOLIC_LABELS,
+        colors=(COLOR_OUTRA_METABOLICA, COLOR_DM),
+        title="Diabetes dentro das doenças metabólicas",
+        filename="venn_metabolicas_diabetes.png",
+    ),
+]
+
+
+def _save_nested_venn(df: pd.DataFrame, spec: NestedVennSpec) -> Path:
+    """Desenha um círculo (doença específica) dentro do grupo.
+
+    Esquemático: as áreas não são proporcionais, pois a doença
+    específica ocupa quase todo o grupo e o anel das "outras" ficaria
+    fino demais para ler.
+    """
+    FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+    path = FIGURES_DIR / spec.filename
+    table = nested_group_table(df, spec.hierarchy, spec.labels)
+    counts = dict(zip(table["categoria"], table["absoluta"]))
+    pcts = dict(zip(table["categoria"], table["relativa"]))
+    group_label, specific_label, other_label = spec.labels
+    group_key = f"{group_label} (total)"
+    n_valid = int(table["n_valido"].iloc[0])
+    outer_color, inner_color = spec.colors
+
+    fig, ax = plt.subplots(figsize=(7, 5.5))
+    ax.add_patch(
+        plt.Circle(
+            (0, 0),
+            1.0,
+            facecolor=outer_color,
+            alpha=0.45,
+            edgecolor="white",
+            linewidth=2,
+        )
+    )
+    ax.add_patch(
+        plt.Circle(
+            (INNER_X, 0),
+            INNER_R,
+            facecolor=inner_color,
+            alpha=0.6,
+            edgecolor="white",
+            linewidth=2,
+        )
+    )
+    ax.text(
+        INNER_X,
+        0,
+        f"{textwrap.fill(specific_label, 14)}\n{counts[specific_label]} "
+        f"({_pct(pcts[specific_label])})",
+        ha="center",
+        va="center",
+        fontsize=11,
+        color=INK,
+    )
+    ax.text(
+        (INNER_X - INNER_R - 1) / 2,
+        0,
+        f"{textwrap.fill(other_label, 12)}\n"
+        f"{counts[other_label]} ({_pct(pcts[other_label])})",
+        ha="center",
+        va="center",
+        fontsize=10,
+        color=INK,
+    )
+    ax.text(
+        0,
+        1.08,
+        f"{group_label}: n = {counts[group_key]} ({_pct(pcts[group_key])})",
+        ha="center",
+        va="bottom",
+        fontsize=11,
+        fontweight="bold",
+        color=INK,
+    )
+    ax.set_xlim(-1.15, 1.15)
+    ax.set_ylim(-1.05, 1.25)
+    ax.set_aspect("equal")
+    ax.axis("off")
+    ax.set_title(spec.title, fontsize=13, color=INK, pad=4)
+    fig.text(
+        0.5,
+        0.01,
+        f"Pacientes com informação: n = {n_valid}. Esquema sem áreas "
+        "proporcionais.\nQuem tem "
+        f"{specific_label.split(' (')[0].lower()} pode ter também "
+        "outra doença do grupo (a planilha não distingue).",
+        ha="center",
+        fontsize=9,
+        color=INK_MUTED,
+    )
+    fig.savefig(path, dpi=VENN_DPI, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    return path
+
+
+def export_venns(clean: pd.DataFrame) -> list[Path]:
+    """Gera os diagramas de Venn (PNG 300 dpi, para o trabalho)."""
+    nested = [_save_nested_venn(clean, spec) for spec in NESTED_VENN_SPECS]
+    return nested + [_save_venn(clean, spec) for spec in VENN_SPECS]
 
 
 def export_figures(clean: pd.DataFrame) -> list[Path]:
@@ -150,9 +501,7 @@ def export_figures(clean: pd.DataFrame) -> list[Path]:
 
     TOP_N_CATEGORIES = 15
 
-    fluxograma = fluxograma_table(clean).nlargest(
-        TOP_N_CATEGORIES, "absoluta"
-    )
+    fluxograma = fluxograma_table(clean).nlargest(TOP_N_CATEGORIES, "absoluta")
     paths.append(
         _save_bar(
             fluxograma.rename(columns={"valor": "fluxograma"}),
@@ -502,11 +851,255 @@ def export_correlation(clean: pd.DataFrame) -> Path:
     return out_path
 
 
+def _md_table(df: pd.DataFrame, label_col: str, base: str) -> list[str]:
+    """Tabela Markdown com n e % (vírgula decimal) por linha."""
+    lines = [f"| {base} | n | % |", "|---|---:|---:|"]
+    for _, row in df.iterrows():
+        lines.append(
+            f"| {row[label_col]} | {int(row['absoluta'])} | "
+            f"{_pct(row['relativa'])} |"
+        )
+    return lines
+
+
+def _share(part: int, whole: int) -> str:
+    """ "x de y (z%)" para frases de interpretação."""
+    return f"{part} de {whole} ({_pct(part / whole if whole else 0.0)})"
+
+
+def _nested_md(
+    clean: pd.DataFrame,
+    spec: NestedVennSpec,
+    heading: str,
+    adjective: str,
+) -> list[str]:
+    """Seção Markdown de um grupo com doença específica + outras."""
+    table = nested_group_table(clean, spec.hierarchy, spec.labels)
+    counts = dict(zip(table["categoria"], table["absoluta"]))
+    group_label, specific_label, other_label = spec.labels
+    total = counts[f"{group_label} (total)"]
+    return [
+        f"## {heading}",
+        "",
+        *_md_table(table, "categoria", "Categoria"),
+        "",
+        f"Das {total} pessoas com {group_label.lower()}, "
+        f"{counts[specific_label]} ({_pct(counts[specific_label] / total)}) "
+        f"são {adjective} e {counts[other_label]} "
+        f"({_pct(counts[other_label] / total)}) têm "
+        f"{other_label[0].lower()}{other_label[1:]}.",
+        "",
+        f"Figura: `figures/{spec.filename}` (esquema sem áreas "
+        "proporcionais).",
+        "",
+    ]
+
+
+def _pair_md(
+    clean: pd.DataFrame,
+    spec: VennSpec,
+    heading: str,
+    plurals: tuple[str, str],
+) -> list[str]:
+    """Seção Markdown de um Venn de 2 conjuntos, com frase-resumo."""
+    sub = venn_subsets(clean, list(spec.sets.values()))
+    n_a = sub["10"] + sub["11"]
+    n_b = sub["01"] + sub["11"]
+    return [
+        f"## {heading}",
+        "",
+        *_md_table(
+            venn_regions_table(clean, spec.sets), "combinacao", "Grupo"
+        ),
+        "",
+        f"Entre os {plurals[0]}, {_share(sub['11'], n_a)} também são "
+        f"{plurals[1]}; entre os {plurals[1]}, "
+        f"{_share(sub['11'], n_b)} também são {plurals[0]}.",
+        "",
+        f"Figura: `figures/{spec.filename}`.",
+        "",
+    ]
+
+
+def _regions_md(
+    clean: pd.DataFrame, spec: VennSpec, heading: str, intro: str
+) -> list[str]:
+    """Seção Markdown de um Venn de 3 conjuntos."""
+    return [
+        f"## {heading}",
+        "",
+        intro,
+        "",
+        *_md_table(
+            venn_regions_table(clean, spec.sets), "combinacao", "Combinação"
+        ),
+        "",
+        f"Figura: `figures/{spec.filename}`.",
+        "",
+    ]
+
+
+def _multimorbidity_md(clean: pd.DataFrame) -> list[str]:
+    """Seção Markdown de multimorbidade."""
+    multi = multimorbidity_table(clean, MULTIMORBIDITY_COLS)
+    n_multi = int(multi.loc[multi["n_grupos"] >= 2, "absoluta"].sum())  # noqa: PLR2004
+    return [
+        "## 5. Multimorbidade",
+        "",
+        "Quantos grupos de comorbidade cada paciente acumula "
+        "(cardíacas, metabólicas, respiratórias crônicas, neoplasias e "
+        "saúde mental).",
+        "",
+        *_md_table(
+            multi.assign(n_grupos=multi["n_grupos"].astype(str)),
+            "n_grupos",
+            "Nº de grupos",
+        ),
+        "",
+        f"{_share(n_multi, int(multi['n_valido'].iloc[0]))} pacientes "
+        "têm dois ou mais grupos de comorbidade.",
+        "",
+    ]
+
+
+def _qa_md(qa: pd.DataFrame) -> list[str]:
+    """Seção Markdown com linhas da planilha a revisar."""
+    lines = ["## Pontos para revisar na planilha", ""]
+    if qa.empty:
+        return [*lines, "Nenhuma inconsistência entre cores e SIM/NÃO.", ""]
+    lines.extend(
+        [
+            "Linhas em que a cor contradiz as colunas SIM/NÃO (lista "
+            "completa em `descriptive/qa_inconsistencias_cores.csv`):",
+            "",
+        ]
+    )
+    lines.extend(
+        f"- Aba {row[COL_MES_COLETA]}, linha "
+        f"{int(row[COL_LINHA_EXCEL])}: {row['problema']}."
+        for _, row in qa.iterrows()
+    )
+    lines.extend(
+        [
+            "",
+            "Enquanto não forem corrigidas, vale a regra acima: "
+            "hipertensão vem da coluna *Hipertenso* e 'outra cardíaca' "
+            "vem da célula azul (idem para diabetes/rosa).",
+            "",
+        ]
+    )
+    return lines
+
+
+def _write_overlap_markdown(clean: pd.DataFrame, qa: pd.DataFrame) -> Path:
+    """Gera guia de leitura das sobreposições (Venn) para o trabalho."""
+    venns = {spec.filename: spec for spec in VENN_SPECS}
+    cardiac_spec, metabolic_spec = NESTED_VENN_SPECS
+    md = [
+        "# Comorbidades e hábitos de vida: sobreposições (Venn)",
+        "",
+        "Um mesmo paciente pode ter mais de uma comorbidade ou hábito. "
+        "Por isso as porcentagens de cada condição, somadas, passam de "
+        "100%. Os diagramas de Venn e as tabelas abaixo contam **cada "
+        "paciente uma única vez**, na região que corresponde à sua "
+        "combinação de condições.",
+        "",
+        "- Tabelas: `descriptive/clin_cardiacas_hipertensao.csv`, "
+        "`clin_metabolicas_diabetes.csv`, `clin_venn_*.csv` e "
+        "`clin_multimorbidade.csv`",
+        "- Figuras (PNG 300 dpi, prontas para o trabalho): "
+        "`figures/venn_*.png`",
+        "- Percentuais sobre os pacientes com informação (`n_valido`). "
+        "Um paciente sem registro de comorbidades/hábitos fica fora "
+        "das análises que usam essas colunas; por isso alguns n são "
+        "327 e outros 328.",
+        "",
+        "## Como a planilha foi lida (marcação por cores)",
+        "",
+        "| Coluna da planilha | Cor | Significado |",
+        "|---|---|---|",
+        "| DOENÇAS CARDÍACAS | verde | tem hipertensão (HAS) |",
+        "| DOENÇAS CARDÍACAS | azul | outra doença cardíaca, **sem** HAS |",
+        "| DOENÇAS METABÓLICAS | roxo | tem diabetes (DM) |",
+        "| DOENÇAS METABÓLICAS | rosa | outra doença metabólica, **sem** DM |",
+        "",
+        "- Regra aplicada: todo hipertenso conta em doenças cardíacas e "
+        "todo diabético em doenças metabólicas.",
+        "- **Limitação:** verde/roxo não exclui outra doença do mesmo "
+        "grupo. Não dá para saber quantos hipertensos têm também outra "
+        "doença cardíaca (idem para diabetes). Vale citar isso no texto.",
+        "",
+        *_nested_md(
+            clean,
+            cardiac_spec,
+            "1. Doenças cardíacas: hipertensão × outras",
+            "hipertensas",
+        ),
+        *_nested_md(
+            clean,
+            metabolic_spec,
+            "2. Doenças metabólicas: diabetes × outras",
+            "diabéticas",
+        ),
+        *_pair_md(
+            clean,
+            venns["venn_has_diabetes.png"],
+            "3. Hipertensão e diabetes",
+            ("hipertensos", "diabéticos"),
+        ),
+        *_regions_md(
+            clean,
+            venns["venn_comorbidades.png"],
+            "4. Grupos de comorbidades",
+            "Doenças cardíacas (inclui HAS), metabólicas (inclui DM) e "
+            "respiratórias crônicas.",
+        ),
+        *_multimorbidity_md(clean),
+        *_pair_md(
+            clean,
+            venns["venn_habitos.png"],
+            "6. Hábitos de vida: tabagismo e etilismo",
+            ("tabagistas", "etilistas"),
+        ),
+        *_regions_md(
+            clean,
+            venns["venn_habitos_spas.png"],
+            "7. Tabagismo, etilismo e uso de SPAs",
+            "SPAs = substâncias psicoativas.",
+        ),
+        "## Como ler um diagrama de Venn",
+        "",
+        "- Cada círculo é uma condição; o número junto do nome é o "
+        "total de pacientes com ela.",
+        "- Os números **dentro** das regiões são exclusivos: quem está "
+        "na interseção não é contado de novo nas outras partes.",
+        "- Nos diagramas de 2 e 3 círculos, o tamanho é aproximadamente "
+        "proporcional ao número de pacientes. Nos de hipertensão e "
+        "diabetes dentro do grupo, o desenho é só esquemático.",
+        "",
+        *_qa_md(qa),
+        "## Regenerar",
+        "",
+        "```bash",
+        "uv run python -m nurse_epidemic.pipeline.prepare_data",
+        "uv run python reports/export_clinical_summaries.py",
+        "uv run python reports/generate_profile_report.py",
+        "```",
+        "",
+    ]
+    path = REPORTS_DIR / "comorbidades_habitos_venn.md"
+    path.write_text("\n".join(md), encoding="utf-8")
+    return path
+
+
 def main() -> None:
     """Executa exportação completa."""
     clean = _load_data()
     export_tables(clean)
+    qa = pd.read_csv(export_color_qa())
     export_figures(clean)
+    export_venns(clean)
+    _write_overlap_markdown(clean, qa)
     export_association(clean)
     export_correlation(clean)
     print(f"Exportação concluída para {REPORTS_DIR}")

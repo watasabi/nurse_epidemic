@@ -44,7 +44,66 @@ CLINICAL_SUMMARY_FILES = {
     "Discriminador (classificação de risco)": "clin_discriminador.csv",
 }
 
+# (título, CSV em descriptive/, PNG em figures/, nota de leitura)
+OVERLAP_ITEMS: list[tuple[str, str, str, str]] = [
+    (
+        "Doenças cardíacas: hipertensão × outras",
+        "clin_cardiacas_hipertensao.csv",
+        "venn_cardiacas_hipertensao.png",
+        "Todo hipertenso está em doenças cardíacas. 'Outra doença "
+        "cardíaca, sem HAS' = células azuis na planilha. Hipertensos "
+        "podem ter outra doença cardíaca associada (não distinguível).",
+    ),
+    (
+        "Doenças metabólicas: diabetes × outras",
+        "clin_metabolicas_diabetes.csv",
+        "venn_metabolicas_diabetes.png",
+        "Todo diabético está em doenças metabólicas. 'Outra doença "
+        "metabólica, sem DM' = células rosa na planilha.",
+    ),
+    (
+        "Hipertensão e diabetes",
+        "clin_venn_has_diabetes.csv",
+        "venn_has_diabetes.png",
+        "Cada paciente aparece em uma única linha da tabela.",
+    ),
+    (
+        "Grupos de comorbidades",
+        "clin_venn_comorbidades.csv",
+        "venn_comorbidades.png",
+        "Cardíacas (inclui HAS), metabólicas (inclui DM) e "
+        "respiratórias crônicas.",
+    ),
+    (
+        "Tabagismo e etilismo",
+        "clin_venn_habitos.csv",
+        "venn_habitos.png",
+        "Cada paciente aparece em uma única linha da tabela.",
+    ),
+    (
+        "Tabagismo, etilismo e uso de SPAs",
+        "clin_venn_habitos_spas.csv",
+        "venn_habitos_spas.png",
+        "SPAs = substâncias psicoativas.",
+    ),
+    (
+        "Multimorbidade (nº de grupos por paciente)",
+        "clin_multimorbidade.csv",
+        "",
+        "Grupos: cardíacas, metabólicas, respiratórias crônicas, "
+        "neoplasias e saúde mental.",
+    ),
+]
+
 FIGURE_CAPTIONS: dict[str, str] = {
+    "venn_cardiacas_hipertensao.png": (
+        "Hipertensão dentro das doenças cardíacas"
+    ),
+    "venn_metabolicas_diabetes.png": "Diabetes dentro das doenças metabólicas",
+    "venn_has_diabetes.png": "Venn: hipertensão e diabetes",
+    "venn_comorbidades.png": "Venn: grupos de comorbidades",
+    "venn_habitos.png": "Venn: tabagismo e etilismo",
+    "venn_habitos_spas.png": "Venn: tabagismo, etilismo e uso de SPAs",
     "sexo_bar.png": "Distribuição por sexo",
     "desfecho_bar.png": "Desfecho clínico padronizado",
     "setor_bar.png": "Setor destinado",
@@ -100,7 +159,7 @@ text-decoration:none;color:var(--text)}
 .table-wrap{overflow-x:auto}
 """
 
-PERCENT_COLUMNS = ("relativa", "sim_relativa")
+PERCENT_COLUMNS = ("relativa", "sim_relativa", "relativa_grupo")
 
 
 def _read_csv(path: Path, index_col: int | None = None) -> pd.DataFrame | None:
@@ -378,6 +437,35 @@ def _clinical_section() -> str:
     return "\n".join(parts)
 
 
+def _overlap_section() -> str:
+    """Tabelas + diagramas de Venn de comorbidades e hábitos."""
+    parts = [
+        '<div class="section" id="sobreposicoes">',
+        "<h2>Comorbidades e hábitos: sobreposições (Venn)</h2>",
+        _meta(
+            "Um paciente pode ter mais de uma condição; aqui cada "
+            "paciente é contado uma única vez por região. Guia: "
+            "reports/comorbidades_habitos_venn.md"
+        ),
+    ]
+    for title, fname, png_name, note in OVERLAP_ITEMS:
+        df = _read_csv(DESCRIPTIVE_DIR / fname)
+        if df is None:
+            continue
+        parts.append(f"<h3>{html.escape(title)}</h3>")
+        parts.append(_meta(note))
+        parts.append(_df_html(df))
+        png = FIGURES_DIR / png_name if png_name else None
+        if png is not None and png.exists():
+            parts.append(
+                f'<img src="{_img_data_uri(png)}" style="max-width:560px" '
+                f'alt="{html.escape(title)}">'
+            )
+        parts.append(_meta(f"{fname}" + (f" · {png_name}" if png else "")))
+    parts.append("</div>")
+    return "\n".join(parts)
+
+
 def _csv_details_section() -> str:
     if not DESCRIPTIVE_DIR.exists():
         return ""
@@ -447,6 +535,8 @@ def _guides_section() -> str:
       — interpretação dos testes</li>
     <li><code>reports/correlation_results.md</code>
       — correlações e IC 95%</li>
+    <li><code>reports/comorbidades_habitos_venn.md</code>
+      — sobreposição de comorbidades e hábitos (Venn)</li>
     <li><code>docs/depara_normalizacoes.md</code>
       — de-para original → limpo</li>
   </ul>
@@ -466,6 +556,7 @@ def generate_html(theme: str = "classic") -> str:
       <a href="#associacao">Associações</a>
       <a href="#correlacoes">Correlações</a>
       <a href="#clinica">Análise clínica</a>
+      <a href="#sobreposicoes">Venn</a>
       <a href="#figuras">Figuras</a>
       <a href="#depara">De-para</a>
       <a href="#descritivos">CSVs</a>
@@ -489,6 +580,7 @@ def generate_html(theme: str = "classic") -> str:
         _association_section(),
         _correlation_section(),
         _clinical_section(),
+        _overlap_section(),
         _figures_section(),
         _depara_section(),
         _csv_details_section(),

@@ -31,6 +31,15 @@ não é necessário saber programar para navegar pelos arquivos.
 
 - Pasta [`figures/`](figures/) — PNGs para o artigo e o HTML
 
+### Comorbidades e hábitos: sobreposições (Venn)
+
+- [`comorbidades_habitos_venn.md`](comorbidades_habitos_venn.md) —
+  hipertensão dentro das doenças cardíacas, diabetes dentro das
+  metabólicas, HAS × DM, grupos de comorbidades, multimorbidade,
+  tabagismo × etilismo (× SPAs); tabelas + como ler os diagramas
+- [`descriptive/qa_inconsistencias_cores.csv`](descriptive/qa_inconsistencias_cores.csv)
+  — linhas da planilha em que a cor contradiz SIM/NÃO
+
 ### Inferência (Fase 2)
 
 - [`association_results.csv`](association_results.csv) — tabela numérica

@@ -1,0 +1,9 @@
+combinacao,n_condicoes,absoluta,relativa,n_valido
+Doenças cardíacas + Doenças metabólicas + Doenças respiratórias crônicas,3,14,0.04281345565749235,327
+Doenças cardíacas + Doenças metabólicas,2,60,0.1834862385321101,327
+Doenças cardíacas + Doenças respiratórias crônicas,2,11,0.03363914373088685,327
+Doenças metabólicas + Doenças respiratórias crônicas,2,4,0.012232415902140673,327
+Somente Doenças cardíacas,1,41,0.12538226299694188,327
+Somente Doenças metabólicas,1,26,0.07951070336391437,327
+Somente Doenças respiratórias crônicas,1,22,0.0672782874617737,327
+Nenhuma das condições,0,149,0.45565749235474007,327
