@@ -4,25 +4,38 @@ from __future__ import annotations
 
 import re
 import unicodedata
+from dataclasses import dataclass
 from datetime import datetime
 
 import pandas as pd
 
 from nurse_epidemic.schemas.columns import (
+    COL_COR_DOENCAS_CARDIACAS,
+    COL_COR_DOENCAS_METABOLICAS,
     COL_DATA_FIM,
     COL_DATA_INICIO,
     COL_DESFECHO,
     COL_DESFECHO_PADRONIZADO,
+    COL_DIABETICO,
     COL_DISCRIMINADOR,
+    COL_DOENCAS_CARDIACAS,
+    COL_DOENCAS_METABOLICAS,
     COL_DURACAO_HORAS,
     COL_FAIXA_ETARIA,
     COL_FLUXOGRAMA,
+    COL_HIPERTENSO,
     COL_HORA_FIM,
     COL_HORA_INICIO,
     COL_IDADE_NUMERICA,
+    COL_OUTRA_DOENCA_CARDIACA,
+    COL_OUTRA_DOENCA_METABOLICA,
     COL_SETOR_DESTINADO,
     COL_SEXO,
     COL_TEMPO_PERMANENCIA,
+    COR_DIABETES,
+    COR_HIPERTENSAO,
+    COR_OUTRA_CARDIACA,
+    COR_OUTRA_METABOLICA,
     YES_NO_COLS,
 )
 
@@ -33,7 +46,11 @@ MAX_LABEL_LEN = 50
 
 def normalize_text(value: object) -> str | None:
     """Normaliza texto: trim, maiúsculas, sem acentos."""
-    if value is None or (isinstance(value, float) and pd.isna(value)):
+    if (
+        value is None
+        or value is pd.NA
+        or (isinstance(value, float) and pd.isna(value))
+    ):
         return None
     text = str(value).strip().rstrip(".")
     if not text or text == ".":
@@ -164,6 +181,80 @@ def simplify_for_association(value: object) -> str | None:
     return text[:MAX_LABEL_LEN] if len(text) > MAX_LABEL_LEN else text
 
 
+def _is_value(series: pd.Series, value: str) -> pd.Series:
+    """Compara com ``value`` tratando ausentes como False."""
+    return series.astype("object").eq(value).fillna(False).astype(bool)
+
+
+@dataclass(frozen=True)
+class GroupHierarchy:
+    """Grupo de doenças composto por uma doença específica + "outras".
+
+    Na planilha, a célula do grupo (ex.: doenças cardíacas) é pintada de
+    uma cor quando a doença específica (ex.: hipertensão) está presente
+    e de outra cor (``other_color``) quando há outra doença do grupo sem
+    a específica.
+    """
+
+    group_col: str
+    specific_col: str
+    color_col: str
+    specific_color: str
+    other_color: str
+    other_col: str
+
+
+CARDIAC_HIERARCHY = GroupHierarchy(
+    group_col=COL_DOENCAS_CARDIACAS,
+    specific_col=COL_HIPERTENSO,
+    color_col=COL_COR_DOENCAS_CARDIACAS,
+    specific_color=COR_HIPERTENSAO,
+    other_color=COR_OUTRA_CARDIACA,
+    other_col=COL_OUTRA_DOENCA_CARDIACA,
+)
+METABOLIC_HIERARCHY = GroupHierarchy(
+    group_col=COL_DOENCAS_METABOLICAS,
+    specific_col=COL_DIABETICO,
+    color_col=COL_COR_DOENCAS_METABOLICAS,
+    specific_color=COR_DIABETES,
+    other_color=COR_OUTRA_METABOLICA,
+    other_col=COL_OUTRA_DOENCA_METABOLICA,
+)
+
+
+def apply_group_hierarchy(
+    df: pd.DataFrame, spec: GroupHierarchy
+) -> pd.DataFrame:
+    """Recompõe um grupo de doenças a partir da marcação por cores.
+
+    - ``other_col`` = SIM quando a célula do grupo tem ``other_color``;
+    - ``group_col`` = SIM quando ``specific_col`` ou ``other_col`` é SIM
+      (todo hipertenso entra em cardíacas, todo diabético em
+      metabólicas); NAO caso contrário.
+
+    Linhas sem resposta no grupo continuam ausentes.
+
+    Args:
+        df: DataFrame com colunas SIM/NAO já padronizadas.
+        spec: Colunas e cor que definem o grupo.
+
+    Returns:
+        Cópia do DataFrame com ``group_col`` e ``other_col`` ajustadas.
+    """
+    out = df.copy()
+    needed = {spec.group_col, spec.specific_col, spec.color_col}
+    if not needed <= set(out.columns):
+        return out
+    has_specific = _is_value(out[spec.specific_col], "SIM")
+    answered = out[spec.group_col].notna() | has_specific
+    is_other = _is_value(out[spec.color_col], spec.other_color)
+    yes_no = {True: "SIM", False: "NAO"}
+    out[spec.other_col] = is_other.map(yes_no)
+    out[spec.group_col] = (has_specific | is_other).map(yes_no)
+    out.loc[~answered, [spec.other_col, spec.group_col]] = None
+    return out
+
+
 def clean_and_standardize(df: pd.DataFrame) -> pd.DataFrame:
     """Aplica limpeza e padronização ao dataset UPA.
 
@@ -211,6 +302,9 @@ def clean_and_standardize(df: pd.DataFrame) -> pd.DataFrame:
         out[COL_DESFECHO_PADRONIZADO] = out[COL_DESFECHO].map(
             standardize_desfecho_upa
         )
+
+    out = apply_group_hierarchy(out, CARDIAC_HIERARCHY)
+    out = apply_group_hierarchy(out, METABOLIC_HIERARCHY)
 
     out[COL_DURACAO_HORAS] = compute_duracao_horas(out)
 

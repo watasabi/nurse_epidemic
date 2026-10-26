@@ -4,6 +4,7 @@ from typing import Final
 
 # Metadados
 COL_MES_COLETA: Final = "mes_coleta"
+COL_LINHA_EXCEL: Final = "linha_excel"
 
 # Demográficas
 COL_SEXO: Final = "sexo"
@@ -39,6 +40,26 @@ COL_DOENCAS_CARDIACAS: Final = "doencas_cardiacas"
 COL_DOENCAS_RESPIRATORIAS: Final = "doencas_respiratorias"
 COL_NEOPLASIAS: Final = "neoplasias"
 COL_DOENCAS_METABOLICAS: Final = "doencas_metabolicas"
+
+# Cores de preenchimento marcadas manualmente na planilha
+COL_COR_DOENCAS_CARDIACAS: Final = "cor_doencas_cardiacas"
+COL_COR_DOENCAS_METABOLICAS: Final = "cor_doencas_metabolicas"
+COL_OUTRA_DOENCA_CARDIACA: Final = "outra_doenca_cardiaca"
+COL_OUTRA_DOENCA_METABOLICA: Final = "outra_doenca_metabolica"
+
+# Códigos ARGB das cores: verde = hipertensão, azul = outra cardíaca
+# (sem hipertensão), roxo = diabetes, rosa = outra metabólica (sem
+# diabetes)
+COR_HIPERTENSAO: Final = "FF00FF00"
+COR_OUTRA_CARDIACA: Final = "FF00FFFF"
+COR_DIABETES: Final = "FF9900FF"
+COR_OUTRA_METABOLICA: Final = "FFEAD1DC"
+
+# Header do Excel → coluna que guarda a cor de preenchimento da célula
+EXCEL_FILL_COL_MAP: Final[dict[str, str]] = {
+    "DOENÇAS CARDÍACAS": COL_COR_DOENCAS_CARDIACAS,
+    "DOENÇAS METABÓLICAS": COL_COR_DOENCAS_METABOLICAS,
+}
 
 # Headers originais do Excel → colunas normalizadas
 EXCEL_COL_MAP: Final[dict[str, str]] = {

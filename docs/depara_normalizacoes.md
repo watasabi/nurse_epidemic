@@ -139,8 +139,10 @@ Este documento descreve como os dados originais da planilha foram renomeados e p
 | coluna_normalizada | valor_original | valor_normalizado | n |
 | --- | --- | --- | --- |
 | doencas_cardiacas | NAO | NAO | 1 |
-| doencas_cardiacas | NÃO | NAO | 203 |
-| doencas_cardiacas | SIM | SIM | 123 |
+| doencas_cardiacas | NÃO | NAO | 199 |
+| doencas_cardiacas | NÃO | SIM | 1 |
+| doencas_cardiacas | SIM | NAO | 1 |
+| doencas_cardiacas | SIM | SIM | 125 |
 | doencas_cardiacas | <NA> | <NA> | 1 |
 
 ### `doencas_respiratorias`

@@ -42,6 +42,7 @@ mais simples — útil para imprimir ou colar em documento.
 | `association_results.csv` | Números dos testes | Conferir p-valores |
 | `association_phik_matrix.csv` | Força de associação (0 a 1) | Visão geral entre variáveis |
 | `correlation_results.md` | Explicação das correlações | Escrever resultados |
+| `comorbidades_habitos_venn.md` | Comorbidades e hábitos que se sobrepõem (Venn) | Tabelas e figuras de comorbidades/hábitos |
 | `depara_*.csv` | Como cada valor bruto virou valor padronizado | Auditar / responder revisor |
 
 Cada subpasta tem seu próprio `README.md` com detalhes:
@@ -79,7 +80,8 @@ Para variáveis numéricas (idade, duração), as colunas são `n`,
 
 ## 4. Como usar os gráficos de `figures/`
 
-São imagens PNG em 120 dpi, prontas para artigo ou apresentação.
+São imagens PNG em 120 dpi (os diagramas de Venn, `venn_*.png`, em
+300 dpi), prontas para artigo ou apresentação.
 Clique com o botão direito → "Copiar imagem" e cole no seu documento.
 
 Se preferir vê-los todos juntos com legenda, use a seção **Figuras**
@@ -118,6 +120,11 @@ A matriz PhiK (mapa de calor azul) é um complemento: vai de 0
    `clin_setor_destinado.csv`, `clin_comorbidades.csv`,
    `clin_habitos_vida.csv` e `clin_tempo_permanencia.csv`. Sempre cite
    o n junto da porcentagem.
+   Para comorbidades e hábitos que se somam no mesmo paciente
+   (hipertensão dentro das cardíacas, diabetes dentro das metabólicas,
+   tabagista + etilista), use
+   [`comorbidades_habitos_venn.md`](comorbidades_habitos_venn.md) e as
+   figuras `figures/venn_*.png`.
 3. **Classificação de risco** — use `clin_fluxograma.csv` e
    `clin_discriminador.csv` para descrever os fluxogramas e
    discriminadores mais usados na triagem (protocolo de Manchester).

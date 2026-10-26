@@ -34,28 +34,27 @@ Para todos os testes: **não existe associação** entre a variável e o desfech
 
 Variáveis com associação estatisticamente significativa:
 
-- `comorbidade` — χ² (qui-quadrado): p ≈ 7.32e-69 (n = 328).
-- `tabagista` — χ² (qui-quadrado): p ≈ 1.38e-68 (n = 328).
-- `etilista` — χ² (qui-quadrado): p ≈ 1.33e-70 (n = 328).
-- `doencas_cardiacas` — χ² (qui-quadrado): p ≈ 3.41e-71 (n = 328).
-- `doencas_respiratorias` — χ² (qui-quadrado): p ≈ 9.88e-67 (n = 328).
-- `doencas_metabolicas` — χ² (qui-quadrado): p ≈ 2.22e-69 (n = 328).
-- `setor_destinado` — χ² (qui-quadrado): p ≈ 5.58e-39 (n = 328).
-- `tempo_permanencia` — χ² (qui-quadrado): p ≈ 1.38e-68 (n = 328).
+- `comorbidade` — χ² (qui-quadrado): p ≈ 0.0046 (n = 327).
+- `tabagista` — χ² (qui-quadrado): p ≈ 0.0083 (n = 327).
+- `etilista` — χ² (qui-quadrado): p ≈ 9.81e-05 (n = 327).
+- `doencas_cardiacas` — χ² (qui-quadrado): p ≈ 6.19e-05 (n = 327).
+- `doencas_metabolicas` — χ² (qui-quadrado): p ≈ 0.0015 (n = 327).
+- `setor_destinado` — χ² (qui-quadrado): p ≈ 6.26e-05 (n = 301).
+- `tempo_permanencia` — χ² (qui-quadrado): p ≈ 6.32e-06 (n = 327).
 
 ## Tabela completa dos testes
 
 | Variável | Tipo de teste | p-value | n | Associação? |
 |---|---|---|---|---|
-| comorbidade | χ² (qui-quadrado) | 7.32e-69 | 328 | significativa |
-| tabagista | χ² (qui-quadrado) | 1.38e-68 | 328 | significativa |
-| etilista | χ² (qui-quadrado) | 1.33e-70 | 328 | significativa |
-| doencas_cardiacas | χ² (qui-quadrado) | 3.41e-71 | 328 | significativa |
-| doencas_respiratorias | χ² (qui-quadrado) | 9.88e-67 | 328 | significativa |
-| doencas_metabolicas | χ² (qui-quadrado) | 2.22e-69 | 328 | significativa |
-| setor_destinado | χ² (qui-quadrado) | 5.58e-39 | 328 | significativa |
-| tempo_permanencia | χ² (qui-quadrado) | 1.38e-68 | 328 | significativa |
-| duracao_horas | Kruskal-Wallis | 0.6501 | 327 | não significativa |
+| comorbidade | χ² (qui-quadrado) | 0.0046 | 327 | significativa |
+| tabagista | χ² (qui-quadrado) | 0.0083 | 327 | significativa |
+| etilista | χ² (qui-quadrado) | 9.81e-05 | 327 | significativa |
+| doencas_cardiacas | χ² (qui-quadrado) | 6.19e-05 | 327 | significativa |
+| doencas_respiratorias | χ² (qui-quadrado) | 0.3820 | 327 | não significativa |
+| doencas_metabolicas | χ² (qui-quadrado) | 0.0015 | 327 | significativa |
+| setor_destinado | χ² (qui-quadrado) | 6.26e-05 | 301 | significativa |
+| tempo_permanencia | χ² (qui-quadrado) | 6.32e-06 | 327 | significativa |
+| duracao_horas | Kruskal-Wallis | 0.6530 | 326 | não significativa |
 
 ## Matriz PhiK
 

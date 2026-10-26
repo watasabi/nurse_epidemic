@@ -1,0 +1,3 @@
+mes_coleta,linha_excel,hipertenso,doencas_cardiacas,cor_doencas_cardiacas,problema,diabetico,doencas_metabolicas,cor_doencas_metabolicas
+MAIO_2025,44,SIM,NAO,,"hipertenso = SIM, mas doencas_cardiacas não é SIM",,,
+MAIO_2025,46,NAO,SIM,FF00FF00,"doencas_cardiacas com a cor de hipertenso, mas hipertenso não é SIM",,,

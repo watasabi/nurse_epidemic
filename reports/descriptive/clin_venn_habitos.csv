@@ -1,0 +1,5 @@
+combinacao,n_condicoes,absoluta,relativa,n_valido
+Tabagista + Etilista,2,46,0.14067278287461774,327
+Somente Tabagista,1,60,0.1834862385321101,327
+Somente Etilista,1,20,0.06116207951070336,327
+Nenhuma das condições,0,201,0.6146788990825688,327

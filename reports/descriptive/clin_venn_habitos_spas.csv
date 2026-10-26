@@ -1,0 +1,9 @@
+combinacao,n_condicoes,absoluta,relativa,n_valido
+Tabagista + Etilista + Uso de SPAs,3,28,0.0856269113149847,327
+Tabagista + Etilista,2,18,0.05504587155963303,327
+Tabagista + Uso de SPAs,2,5,0.01529051987767584,327
+Etilista + Uso de SPAs,2,2,0.0061162079510703364,327
+Somente Tabagista,1,55,0.16819571865443425,327
+Somente Etilista,1,18,0.05504587155963303,327
+Somente Uso de SPAs,1,4,0.012232415902140673,327
+Nenhuma das condições,0,197,0.6024464831804281,327

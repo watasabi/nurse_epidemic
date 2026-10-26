@@ -25,8 +25,10 @@ uso_spas,NÃO ,NAO,1
 uso_spas,SIM,SIM,39
 uso_spas,<NA>,<NA>,1
 doencas_cardiacas,NAO,NAO,1
-doencas_cardiacas,NÃO,NAO,203
-doencas_cardiacas,SIM,SIM,123
+doencas_cardiacas,NÃO,NAO,199
+doencas_cardiacas,NÃO,SIM,1
+doencas_cardiacas,SIM,NAO,1
+doencas_cardiacas,SIM,SIM,125
 doencas_cardiacas,<NA>,<NA>,1
 doencas_respiratorias,NÃO,NAO,276
 doencas_respiratorias,SIM,SIM,51

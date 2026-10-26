@@ -1,0 +1,5 @@
+categoria,absoluta,relativa,relativa_grupo,n_valido
+Doenças cardíacas (total),126,0.3853211009174312,1.0,327
+Hipertensão arterial (HAS),117,0.3577981651376147,0.9285714285714286,327
+"Outra doença cardíaca, sem HAS",9,0.027522935779816515,0.07142857142857142,327
+Sem doenças cardíacas,201,0.6146788990825688,,327

@@ -39,6 +39,26 @@ Se esta é sua primeira vez na pasta `reports/`, comece pelo guia
 - `clin_discriminador.csv` — discriminador de classificação de risco
   (o sintoma/sinal que define a prioridade dentro do fluxograma)
 
+### Sobreposições de comorbidades e hábitos (Venn)
+
+Guia completo, com interpretação:
+[`../comorbidades_habitos_venn.md`](../comorbidades_habitos_venn.md).
+
+- `clin_cardiacas_hipertensao.csv` — doenças cardíacas decompostas em
+  hipertensão (células verdes) e outra doença cardíaca sem HAS (azuis)
+- `clin_metabolicas_diabetes.csv` — doenças metabólicas decompostas em
+  diabetes (roxas) e outra doença metabólica sem DM (rosa)
+- `clin_venn_has_diabetes.csv` — somente HAS, somente DM, HAS + DM,
+  nenhuma
+- `clin_venn_comorbidades.csv` — combinações de doenças cardíacas,
+  metabólicas e respiratórias crônicas
+- `clin_venn_habitos.csv` — somente tabagista, somente etilista,
+  ambos, nenhum
+- `clin_venn_habitos_spas.csv` — tabagismo, etilismo e uso de SPAs
+- `clin_multimorbidade.csv` — nº de grupos de comorbidade por paciente
+- `qa_inconsistencias_cores.csv` — linhas da planilha em que a cor
+  contradiz as colunas SIM/NÃO (para revisar; não é resultado)
+
 ### Variáveis clínicas individuais (`clin_*`)
 
 - `clin_comorbidade.csv` — presença geral de comorbidade (SIM/NAO)
@@ -78,6 +98,16 @@ Em resumos como `clin_comorbidades.csv` / `clin_habitos_vida.csv`:
 | `sim_absoluta` | Quantos responderam SIM |
 | `sim_relativa` | Proporção de SIM entre válidos |
 | `n_valido` | Quantos tinham informação preenchida |
+
+Nas tabelas de sobreposição (`clin_venn_*`, `clin_multimorbidade`):
+
+| Coluna | Significado |
+|--------|-------------|
+| `combinacao` | Região do Venn (ex.: "Tabagista + Etilista") |
+| `n_condicoes` / `n_grupos` | Quantas condições a região tem |
+| `absoluta` / `relativa` | Pacientes **só** naquela região (somam 100%) |
+| `relativa_grupo` | Em `clin_cardiacas_*` / `clin_metabolicas_*`: % dentro do grupo |
+| `n_valido` | Pacientes com todas as colunas preenchidas |
 
 ### Tabelas numéricas
 
