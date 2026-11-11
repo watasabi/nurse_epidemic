@@ -1,5 +1,5 @@
 combinacao,n_condicoes,absoluta,relativa,n_valido
-HAS + Diabetes,2,51,0.15548780487804878,328
-Somente HAS,1,66,0.20121951219512196,328
-Somente Diabetes,1,18,0.054878048780487805,328
-Nenhuma das condições,0,193,0.5884146341463414,328
+HAS + Diabetes,2,47,0.15309446254071662,307
+Somente HAS,1,61,0.1986970684039088,307
+Somente Diabetes,1,15,0.048859934853420196,307
+Nenhuma das condições,0,184,0.5993485342019544,307

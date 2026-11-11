@@ -9,7 +9,7 @@ arquitetura do `tcr_community` / `nursing-health-reports` para o dataset
 
 | Item | Estado atual |
 |------|--------------|
-| Dados principais | `data/raw/Planilha de dados- Estátistico.xlsx` — abas `ABRIL_2025` (155) + `MAIO_2025` (173) = **328 atendimentos** |
+| Dados principais | `data/raw/Planilha de dados- Estátistico.xlsx` — abas `ABRIL_2025` (141) + `MAIO_2025` (166) = **307 atendimentos** |
 | Dados auxiliares | ~~`data/external/doencas_upa.csv`~~ — removido: continha dados de outras UPAs/meses (jan/mar/jul/set, UPA 1 e 2) fora do escopo deste estudo (UPA única, abril–maio/2025) |
 | Código | `src/` vazio; notebook exploratório em `notebooks/processing/00_first_processing.ipynb` (usa ODS antigo, não o Excel atual) |
 | Referência | `/home/rwp/code/nurse/tcr_community` — módulos `schemas`, `cleaning`, `pipeline`, `stats`, `reports` |
@@ -47,7 +47,7 @@ Criar pasta `.specs/changes/upa-analytics/` com:
 
 - `CHANGE.md` — escopo Fase 1+2, status `in_progress`, claims verificáveis
 - `plan.md` — espelho deste plano (tasks)
-- `verification.md` — checklist: `uv run pytest`, export scripts, HTML gerado, N=328
+- `verification.md` — checklist: `uv run pytest`, export scripts, HTML gerado, N=307
 
 Atualizar `.specs/changes/DIGEST.md` com entrada resumida.
 
@@ -241,7 +241,7 @@ Dois temas: `profile_report.html` (classic) + `profile_report_minimal.html` (min
 - Harmonização de colunas entre abas (loader)
 - `parse_yes_no`, `standardize_desfecho_upa`, `compute_duracao_horas`
 - `chi_square_or_fisher` em frame sintético pequeno
-- Smoke: `prepare_data()` produz parquet com 328 linhas
+- Smoke: `prepare_data()` produz parquet com 307 linhas
 
 ---
 
@@ -265,7 +265,7 @@ uv run python reports/generate_profile_report.py
 
 Critérios de aceite:
 
-- Parquet processado com 328 registros
+- Parquet processado com 307 registros
 - CSVs descritivos + association + correlation gerados
 - HTML classic + minimal self-contained
 - Testes passando; ruff limpo

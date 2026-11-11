@@ -2,7 +2,7 @@
 
 Este guia foi escrito para quem **não programa** e precisa usar os
 resultados do estudo da UPA Curitiba (perfil Manchester "muito
-urgente", abril–maio/2025, 328 prontuários).
+urgente", abril–maio/2025, 307 prontuários).
 
 Você não precisa abrir nenhum código. Tudo o que interessa está em
 arquivos que abrem no navegador, no Excel ou em qualquer editor de

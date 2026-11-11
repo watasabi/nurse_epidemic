@@ -6,6 +6,14 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 ## [Unreleased]
 
+### Changed
+- Planilha revisada pela pesquisadora (09/11/2026): retirados os
+  pacientes sem fluxograma/discriminador ou com comorbidades ausentes.
+  Amostra passa de 328 para **307** atendimentos (ABRIL 141 + MAIO
+  166); todas as tabelas, figuras e relatórios HTML foram refeitos.
+  Versão anterior arquivada em
+  `data/raw/Planilha de dados- Estátistico_versao_2026-10-26.xlsx`.
+
 ### Added
 - Diagramas de Venn (`figures/venn_*.png`, 300 dpi) e tabelas de
   sobreposição: hipertensão dentro das doenças cardíacas, diabetes

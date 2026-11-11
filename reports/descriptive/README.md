@@ -3,7 +3,7 @@
 Tabelas de frequência e resumos numéricos gerados a partir da base
 limpa de atendimentos UPA (`upa_patients_clean.parquet`).
 
-Amostra atual: **328** registros (abril + maio/2025).
+Amostra atual: **307** registros (abril + maio/2025).
 
 ## Como navegar
 

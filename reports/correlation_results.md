@@ -30,11 +30,11 @@ O IC 95% é uma faixa plausível para o verdadeiro r na população. Se o interv
 
 | Variável A | Variável B | Método | r | IC 95% | p-value | n |
 |---|---|---|---|---|---|---|
-| duracao_horas | faixa_etaria_ordinal | spearman | 0.0840 | [-0.026, 0.197] | 0.1294 | 327 |
+| duracao_horas | faixa_etaria_ordinal | spearman | 0.0962 | [-0.024, 0.213] | 0.0931 | 306 |
 
 ## Interpretação prática
 
-- `duracao_horas` × `faixa_etaria_ordinal`: correlação fraca (r ≈ 0.084), não significativa (p ≥ 0,05).
+- `duracao_horas` × `faixa_etaria_ordinal`: correlação fraca (r ≈ 0.096), não significativa (p ≥ 0,05).
 
 ## Como usar
 

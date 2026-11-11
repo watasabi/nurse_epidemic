@@ -46,7 +46,7 @@ O pipeline cobre:
 5. **Relatórios** — CSVs, figuras PNG e HTML autocontido (classic +
    minimal), com gráficos interativos Plotly
 
-Amostra processada atual: **328 atendimentos** (abas `ABRIL_2025` +
+Amostra processada atual: **307 atendimentos** (abas `ABRIL_2025` +
 `MAIO_2025`).
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>

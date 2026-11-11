@@ -4,7 +4,7 @@ Um mesmo paciente pode ter mais de uma comorbidade ou hábito. Por isso as porce
 
 - Tabelas: `descriptive/clin_cardiacas_hipertensao.csv`, `clin_metabolicas_diabetes.csv`, `clin_venn_*.csv` e `clin_multimorbidade.csv`
 - Figuras (PNG 300 dpi, prontas para o trabalho): `figures/venn_*.png`
-- Percentuais sobre os pacientes com informação (`n_valido`). Um paciente sem registro de comorbidades/hábitos fica fora das análises que usam essas colunas; por isso alguns n são 327 e outros 328.
+- Percentuais sobre os pacientes com informação (`n_valido`); na amostra atual todos os pacientes têm comorbidades e hábitos registrados.
 
 ## Como a planilha foi lida (marcação por cores)
 
@@ -22,12 +22,12 @@ Um mesmo paciente pode ter mais de uma comorbidade ou hábito. Por isso as porce
 
 | Categoria | n | % |
 |---|---:|---:|
-| Doenças cardíacas (total) | 126 | 38,5% |
-| Hipertensão arterial (HAS) | 117 | 35,8% |
-| Outra doença cardíaca, sem HAS | 9 | 2,8% |
-| Sem doenças cardíacas | 201 | 61,5% |
+| Doenças cardíacas (total) | 114 | 37,1% |
+| Hipertensão arterial (HAS) | 108 | 35,2% |
+| Outra doença cardíaca, sem HAS | 6 | 2,0% |
+| Sem doenças cardíacas | 193 | 62,9% |
 
-Das 126 pessoas com doenças cardíacas, 117 (92,9%) são hipertensas e 9 (7,1%) têm outra doença cardíaca, sem HAS.
+Das 114 pessoas com doenças cardíacas, 108 (94,7%) são hipertensas e 6 (5,3%) têm outra doença cardíaca, sem HAS.
 
 Figura: `figures/venn_cardiacas_hipertensao.png` (esquema sem áreas proporcionais).
 
@@ -35,12 +35,12 @@ Figura: `figures/venn_cardiacas_hipertensao.png` (esquema sem áreas proporciona
 
 | Categoria | n | % |
 |---|---:|---:|
-| Doenças metabólicas (total) | 104 | 31,8% |
-| Diabetes mellitus (DM) | 69 | 21,1% |
-| Outra doença metabólica, sem DM | 35 | 10,7% |
-| Sem doenças metabólicas | 223 | 68,2% |
+| Doenças metabólicas (total) | 94 | 30,6% |
+| Diabetes mellitus (DM) | 62 | 20,2% |
+| Outra doença metabólica, sem DM | 32 | 10,4% |
+| Sem doenças metabólicas | 213 | 69,4% |
 
-Das 104 pessoas com doenças metabólicas, 69 (66,3%) são diabéticas e 35 (33,7%) têm outra doença metabólica, sem DM.
+Das 94 pessoas com doenças metabólicas, 62 (66,0%) são diabéticas e 32 (34,0%) têm outra doença metabólica, sem DM.
 
 Figura: `figures/venn_metabolicas_diabetes.png` (esquema sem áreas proporcionais).
 
@@ -48,12 +48,12 @@ Figura: `figures/venn_metabolicas_diabetes.png` (esquema sem áreas proporcionai
 
 | Grupo | n | % |
 |---|---:|---:|
-| HAS + Diabetes | 51 | 15,5% |
-| Somente HAS | 66 | 20,1% |
-| Somente Diabetes | 18 | 5,5% |
-| Nenhuma das condições | 193 | 58,8% |
+| HAS + Diabetes | 47 | 15,3% |
+| Somente HAS | 61 | 19,9% |
+| Somente Diabetes | 15 | 4,9% |
+| Nenhuma das condições | 184 | 59,9% |
 
-Entre os hipertensos, 51 de 117 (43,6%) também são diabéticos; entre os diabéticos, 51 de 69 (73,9%) também são hipertensos.
+Entre os hipertensos, 47 de 108 (43,5%) também são diabéticos; entre os diabéticos, 47 de 62 (75,8%) também são hipertensos.
 
 Figura: `figures/venn_has_diabetes.png`.
 
@@ -63,14 +63,14 @@ Doenças cardíacas (inclui HAS), metabólicas (inclui DM) e respiratórias crô
 
 | Combinação | n | % |
 |---|---:|---:|
-| Doenças cardíacas + Doenças metabólicas + Doenças respiratórias crônicas | 14 | 4,3% |
-| Doenças cardíacas + Doenças metabólicas | 60 | 18,3% |
-| Doenças cardíacas + Doenças respiratórias crônicas | 11 | 3,4% |
-| Doenças metabólicas + Doenças respiratórias crônicas | 4 | 1,2% |
-| Somente Doenças cardíacas | 41 | 12,5% |
-| Somente Doenças metabólicas | 26 | 8,0% |
-| Somente Doenças respiratórias crônicas | 22 | 6,7% |
-| Nenhuma das condições | 149 | 45,6% |
+| Doenças cardíacas + Doenças metabólicas + Doenças respiratórias crônicas | 12 | 3,9% |
+| Doenças cardíacas + Doenças metabólicas | 55 | 17,9% |
+| Doenças cardíacas + Doenças respiratórias crônicas | 10 | 3,3% |
+| Doenças metabólicas + Doenças respiratórias crônicas | 4 | 1,3% |
+| Somente Doenças cardíacas | 37 | 12,1% |
+| Somente Doenças metabólicas | 23 | 7,5% |
+| Somente Doenças respiratórias crônicas | 21 | 6,8% |
+| Nenhuma das condições | 145 | 47,2% |
 
 Figura: `figures/venn_comorbidades.png`.
 
@@ -80,24 +80,24 @@ Quantos grupos de comorbidade cada paciente acumula (cardíacas, metabólicas, r
 
 | Nº de grupos | n | % |
 |---|---:|---:|
-| 0 | 100 | 30,6% |
-| 1 | 117 | 35,8% |
-| 2 | 84 | 25,7% |
-| 3 | 22 | 6,7% |
-| 4 | 4 | 1,2% |
+| 0 | 97 | 31,6% |
+| 1 | 110 | 35,8% |
+| 2 | 79 | 25,7% |
+| 3 | 17 | 5,5% |
+| 4 | 4 | 1,3% |
 
-110 de 327 (33,6%) pacientes têm dois ou mais grupos de comorbidade.
+100 de 307 (32,6%) pacientes têm dois ou mais grupos de comorbidade.
 
 ## 6. Hábitos de vida: tabagismo e etilismo
 
 | Grupo | n | % |
 |---|---:|---:|
-| Tabagista + Etilista | 46 | 14,1% |
-| Somente Tabagista | 60 | 18,3% |
-| Somente Etilista | 20 | 6,1% |
-| Nenhuma das condições | 201 | 61,5% |
+| Tabagista + Etilista | 43 | 14,0% |
+| Somente Tabagista | 57 | 18,6% |
+| Somente Etilista | 20 | 6,5% |
+| Nenhuma das condições | 187 | 60,9% |
 
-Entre os tabagistas, 46 de 106 (43,4%) também são etilistas; entre os etilistas, 46 de 66 (69,7%) também são tabagistas.
+Entre os tabagistas, 43 de 100 (43,0%) também são etilistas; entre os etilistas, 43 de 63 (68,3%) também são tabagistas.
 
 Figura: `figures/venn_habitos.png`.
 
@@ -107,14 +107,14 @@ SPAs = substâncias psicoativas.
 
 | Combinação | n | % |
 |---|---:|---:|
-| Tabagista + Etilista + Uso de SPAs | 28 | 8,6% |
-| Tabagista + Etilista | 18 | 5,5% |
-| Tabagista + Uso de SPAs | 5 | 1,5% |
-| Etilista + Uso de SPAs | 2 | 0,6% |
-| Somente Tabagista | 55 | 16,8% |
-| Somente Etilista | 18 | 5,5% |
-| Somente Uso de SPAs | 4 | 1,2% |
-| Nenhuma das condições | 197 | 60,2% |
+| Tabagista + Etilista + Uso de SPAs | 28 | 9,1% |
+| Tabagista + Etilista | 15 | 4,9% |
+| Tabagista + Uso de SPAs | 4 | 1,3% |
+| Etilista + Uso de SPAs | 2 | 0,7% |
+| Somente Tabagista | 53 | 17,3% |
+| Somente Etilista | 18 | 5,9% |
+| Somente Uso de SPAs | 4 | 1,3% |
+| Nenhuma das condições | 183 | 59,6% |
 
 Figura: `figures/venn_habitos_spas.png`.
 
@@ -128,8 +128,7 @@ Figura: `figures/venn_habitos_spas.png`.
 
 Linhas em que a cor contradiz as colunas SIM/NÃO (lista completa em `descriptive/qa_inconsistencias_cores.csv`):
 
-- Aba MAIO_2025, linha 44: hipertenso = SIM, mas doencas_cardiacas não é SIM.
-- Aba MAIO_2025, linha 46: doencas_cardiacas com a cor de hipertenso, mas hipertenso não é SIM.
+- Aba MAIO_2025, linha 45: doencas_cardiacas com a cor de hipertenso, mas hipertenso não é SIM.
 
 Enquanto não forem corrigidas, vale a regra acima: hipertensão vem da coluna *Hipertenso* e 'outra cardíaca' vem da célula azul (idem para diabetes/rosa).
 

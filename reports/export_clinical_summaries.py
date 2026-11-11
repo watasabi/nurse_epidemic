@@ -1009,10 +1009,9 @@ def _write_overlap_markdown(clean: pd.DataFrame, qa: pd.DataFrame) -> Path:
         "`clin_multimorbidade.csv`",
         "- Figuras (PNG 300 dpi, prontas para o trabalho): "
         "`figures/venn_*.png`",
-        "- Percentuais sobre os pacientes com informação (`n_valido`). "
-        "Um paciente sem registro de comorbidades/hábitos fica fora "
-        "das análises que usam essas colunas; por isso alguns n são "
-        "327 e outros 328.",
+        "- Percentuais sobre os pacientes com informação (`n_valido`); "
+        "na amostra atual todos os pacientes têm comorbidades e "
+        "hábitos registrados.",
         "",
         "## Como a planilha foi lida (marcação por cores)",
         "",

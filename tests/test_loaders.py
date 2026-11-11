@@ -9,7 +9,7 @@ from nurse_epidemic.schemas.columns import (
     COL_SEXO,
 )
 
-EXPECTED_ROWS = 328
+EXPECTED_ROWS = 307
 
 
 def test_load_upa_excel_row_count() -> None:
