@@ -22,8 +22,7 @@ uso_spas,NÃO ,NAO,1
 uso_spas,SIM,SIM,38
 doencas_cardiacas,NAO,NAO,1
 doencas_cardiacas,NÃO,NAO,191
-doencas_cardiacas,SIM,NAO,1
-doencas_cardiacas,SIM,SIM,114
+doencas_cardiacas,SIM,SIM,115
 doencas_respiratorias,NÃO,NAO,260
 doencas_respiratorias,SIM,SIM,47
 neoplasias,NÃO,NAO,302

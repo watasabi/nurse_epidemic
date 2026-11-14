@@ -136,8 +136,7 @@ Este documento descreve como os dados originais da planilha foram renomeados e p
 | --- | --- | --- | --- |
 | doencas_cardiacas | NAO | NAO | 1 |
 | doencas_cardiacas | NÃO | NAO | 191 |
-| doencas_cardiacas | SIM | NAO | 1 |
-| doencas_cardiacas | SIM | SIM | 114 |
+| doencas_cardiacas | SIM | SIM | 115 |
 
 ### `doencas_respiratorias`
 

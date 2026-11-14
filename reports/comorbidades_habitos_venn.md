@@ -22,12 +22,12 @@ Um mesmo paciente pode ter mais de uma comorbidade ou hábito. Por isso as porce
 
 | Categoria | n | % |
 |---|---:|---:|
-| Doenças cardíacas (total) | 114 | 37,1% |
+| Doenças cardíacas (total) | 115 | 37,5% |
 | Hipertensão arterial (HAS) | 108 | 35,2% |
-| Outra doença cardíaca, sem HAS | 6 | 2,0% |
-| Sem doenças cardíacas | 193 | 62,9% |
+| Outra doença cardíaca, sem HAS | 7 | 2,3% |
+| Sem doenças cardíacas | 192 | 62,5% |
 
-Das 114 pessoas com doenças cardíacas, 108 (94,7%) são hipertensas e 6 (5,3%) têm outra doença cardíaca, sem HAS.
+Das 115 pessoas com doenças cardíacas, 108 (93,9%) são hipertensas e 7 (6,1%) têm outra doença cardíaca, sem HAS.
 
 Figura: `figures/venn_cardiacas_hipertensao.png` (esquema sem áreas proporcionais).
 
@@ -67,10 +67,10 @@ Doenças cardíacas (inclui HAS), metabólicas (inclui DM) e respiratórias crô
 | Doenças cardíacas + Doenças metabólicas | 55 | 17,9% |
 | Doenças cardíacas + Doenças respiratórias crônicas | 10 | 3,3% |
 | Doenças metabólicas + Doenças respiratórias crônicas | 4 | 1,3% |
-| Somente Doenças cardíacas | 37 | 12,1% |
+| Somente Doenças cardíacas | 38 | 12,4% |
 | Somente Doenças metabólicas | 23 | 7,5% |
 | Somente Doenças respiratórias crônicas | 21 | 6,8% |
-| Nenhuma das condições | 145 | 47,2% |
+| Nenhuma das condições | 144 | 46,9% |
 
 Figura: `figures/venn_comorbidades.png`.
 
@@ -80,8 +80,8 @@ Quantos grupos de comorbidade cada paciente acumula (cardíacas, metabólicas, r
 
 | Nº de grupos | n | % |
 |---|---:|---:|
-| 0 | 97 | 31,6% |
-| 1 | 110 | 35,8% |
+| 0 | 96 | 31,3% |
+| 1 | 111 | 36,2% |
 | 2 | 79 | 25,7% |
 | 3 | 17 | 5,5% |
 | 4 | 4 | 1,3% |
@@ -126,11 +126,7 @@ Figura: `figures/venn_habitos_spas.png`.
 
 ## Pontos para revisar na planilha
 
-Linhas em que a cor contradiz as colunas SIM/NÃO (lista completa em `descriptive/qa_inconsistencias_cores.csv`):
-
-- Aba MAIO_2025, linha 45: doencas_cardiacas com a cor de hipertenso, mas hipertenso não é SIM.
-
-Enquanto não forem corrigidas, vale a regra acima: hipertensão vem da coluna *Hipertenso* e 'outra cardíaca' vem da célula azul (idem para diabetes/rosa).
+Nenhuma inconsistência entre cores e SIM/NÃO.
 
 ## Regenerar
 

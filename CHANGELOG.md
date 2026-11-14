@@ -13,6 +13,15 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
   166); todas as tabelas, figuras e relatórios HTML foram refeitos.
   Versão anterior arquivada em
   `data/raw/Planilha de dados- Estátistico_versao_2026-10-26.xlsx`.
+- Planilha revisada pela pesquisadora (14/11/2026): corrigida a cor
+  da célula de doenças cardíacas na aba `MAIO_2025` (linha 45), que
+  estava marcada como hipertensão mesmo com `Hipertenso = NÃO`
+  (apontado em `qa_inconsistencias_cores.csv`). Amostra continua em
+  **307** atendimentos; `doencas_cardiacas` passa de 114 para 115
+  casos (115/307) e o arquivo de inconsistências de cor fica vazio.
+  Tabelas, figuras e relatórios HTML foram refeitos. Versão anterior
+  arquivada em
+  `data/raw/Planilha de dados- Estátistico_versao_2026-11-09.xlsx`.
 
 ### Added
 - Diagramas de Venn (`figures/venn_*.png`, 300 dpi) e tabelas de

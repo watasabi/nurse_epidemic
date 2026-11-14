@@ -2,7 +2,7 @@ variable,target,test,statistic,p_value,n,note
 comorbidade,desfecho_padronizado,chi2,6.6868996951281545,0.0825760003034854,307,
 tabagista,desfecho_padronizado,chi2,10.99599280085734,0.01174756376609584,307,
 etilista,desfecho_padronizado,chi2,21.836831163581326,7.053431694129986e-05,307,
-doencas_cardiacas,desfecho_padronizado,chi2,16.468966044621535,0.0009086300564047943,307,
+doencas_cardiacas,desfecho_padronizado,chi2,16.339240039874536,0.0009660911916665342,307,
 doencas_respiratorias,desfecho_padronizado,chi2,2.4908004180055263,0.4769559482842286,307,
 doencas_metabolicas,desfecho_padronizado,chi2,13.608331735299307,0.003489790211206439,307,
 setor_destinado,desfecho_padronizado,chi2,33.961008106125405,9.073876934605028e-05,299,

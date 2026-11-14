@@ -36,7 +36,7 @@ Variáveis com associação estatisticamente significativa:
 
 - `tabagista` — χ² (qui-quadrado): p ≈ 0.0117 (n = 307).
 - `etilista` — χ² (qui-quadrado): p ≈ 7.05e-05 (n = 307).
-- `doencas_cardiacas` — χ² (qui-quadrado): p ≈ 0.0009 (n = 307).
+- `doencas_cardiacas` — χ² (qui-quadrado): p ≈ 0.0010 (n = 307).
 - `doencas_metabolicas` — χ² (qui-quadrado): p ≈ 0.0035 (n = 307).
 - `setor_destinado` — χ² (qui-quadrado): p ≈ 9.07e-05 (n = 299).
 - `tempo_permanencia` — χ² (qui-quadrado): p ≈ 1.57e-05 (n = 307).
@@ -48,7 +48,7 @@ Variáveis com associação estatisticamente significativa:
 | comorbidade | χ² (qui-quadrado) | 0.0826 | 307 | não significativa |
 | tabagista | χ² (qui-quadrado) | 0.0117 | 307 | significativa |
 | etilista | χ² (qui-quadrado) | 7.05e-05 | 307 | significativa |
-| doencas_cardiacas | χ² (qui-quadrado) | 0.0009 | 307 | significativa |
+| doencas_cardiacas | χ² (qui-quadrado) | 0.0010 | 307 | significativa |
 | doencas_respiratorias | χ² (qui-quadrado) | 0.4770 | 307 | não significativa |
 | doencas_metabolicas | χ² (qui-quadrado) | 0.0035 | 307 | significativa |
 | setor_destinado | χ² (qui-quadrado) | 9.07e-05 | 299 | significativa |
