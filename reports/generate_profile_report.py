@@ -572,8 +572,8 @@ def generate_html(theme: str = "classic") -> str:
         f"<style>{css}</style></head><body>",
         wrapper_open,
         "<header><h1>Perfil epidemiológico UPA Curitiba</h1>",
-        f'<p class="meta">Gerado em {now} — figuras PNG embutidas no '
-        "arquivo; gráficos interativos precisam de internet.</p>",
+        f'<p class="meta">Gerado em {now} — relatório autocontido '
+        "(figuras e gráficos interativos embutidos, funciona offline).</p>",
         toc if theme == "minimal" else "",
         "</header>",
         _stale_banner(),

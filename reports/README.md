@@ -65,10 +65,9 @@ não é necessário saber programar para navegar pelos arquivos.
   minimal (melhor para leitura)
 
 Os dois arquivos são **autocontidos**: as figuras PNG ficam gravadas
-dentro do HTML (base64), então continuam visíveis após download ou
-envio por e-mail. Os gráficos interativos (Plotly) são carregados por
-CDN e exigem internet; cada um tem uma versão estática equivalente em
-[`figures/`](figures/).
+dentro do HTML (base64) e o Plotly.js vem embutido inline (sem CDN),
+então tabelas, figuras e gráficos interativos continuam funcionando
+após download ou envio por e-mail, mesmo offline.
 
 ## Como regenerar tudo
 

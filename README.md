@@ -60,10 +60,10 @@ como interpretar os testes.
 
 Para a visão completa, abra
 [`reports/profile_report_minimal.html`](reports/profile_report_minimal.html)
-no navegador. As figuras PNG ficam embutidas no arquivo (base64),
-então continuam visíveis mesmo após download ou envio por e-mail; os
-gráficos interativos (Plotly via CDN) exigem internet e têm
-equivalente estático em `reports/figures/`.
+no navegador. As figuras PNG e os gráficos interativos (Plotly.js
+embutido inline, sem CDN) ficam dentro do próprio arquivo, então
+tudo continua visível mesmo offline, após download ou envio por
+e-mail.
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 

@@ -22,10 +22,10 @@ No topo da página há uma barra de atalhos (Guias, Associações,
 Correlações, Análise clínica, Figuras, De-para, CSVs). Clique para
 pular direto à seção desejada.
 
-> **Baixou ou recebeu o HTML por e-mail?** Os gráficos em imagem
-> continuam aparecendo, porque ficam gravados dentro do próprio
-> arquivo. Só os gráficos interativos (aqueles em que você passa o
-> mouse e vê o número) precisam de internet no momento da abertura.
+> **Baixou ou recebeu o HTML por e-mail?** Tudo continua funcionando
+> sem internet: as imagens ficam gravadas dentro do arquivo e os
+> gráficos interativos (onde você passa o mouse e vê o número) usam
+> uma biblioteca embutida no próprio HTML, não um link externo.
 
 Existe também `profile_report.html`, com o mesmo conteúdo em um visual
 mais simples — útil para imprimir ou colar em documento.
