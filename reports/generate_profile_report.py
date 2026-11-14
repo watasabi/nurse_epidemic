@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Gera relatório HTML autocontido a partir dos CSVs em reports/.
 
-As imagens PNG são embutidas em base64, portanto o arquivo continua
-mostrando todos os gráficos mesmo depois de baixado, copiado ou enviado
-por e-mail (sem depender da pasta `figures/`).
+As imagens PNG são embutidas em base64 e o Plotly.js é embutido
+inline (sem CDN), portanto o arquivo continua mostrando todos os
+gráficos (estáticos e interativos) mesmo depois de baixado, copiado
+ou enviado por e-mail e aberto sem internet.
 """
 
 from __future__ import annotations
@@ -16,7 +17,7 @@ from pathlib import Path
 
 import pandas as pd
 import plotly.graph_objects as go
-from plotly.offline import get_plotlyjs_version
+from plotly.offline import get_plotlyjs
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORTS_DIR = ROOT / "reports"
@@ -24,7 +25,7 @@ DESCRIPTIVE_DIR = REPORTS_DIR / "descriptive"
 FIGURES_DIR = REPORTS_DIR / "figures"
 PROCESSED_PATH = ROOT / "data" / "processed" / "upa_patients_clean.parquet"
 
-PLOTLY_CDN = f"https://cdn.plot.ly/plotly-{get_plotlyjs_version()}.min.js"
+PLOTLY_JS = get_plotlyjs()
 
 ALPHA = 0.05
 PREVIEW_ROWS = 20
@@ -567,7 +568,7 @@ def generate_html(theme: str = "classic") -> str:
         "<meta charset='utf-8'>",
         "<meta name='viewport' content='width=device-width,initial-scale=1'>",
         "<title>Relatório UPA Curitiba</title>",
-        f'<script src="{PLOTLY_CDN}" charset="utf-8"></script>',
+        f"<script>{PLOTLY_JS}</script>",
         f"<style>{css}</style></head><body>",
         wrapper_open,
         "<header><h1>Perfil epidemiológico UPA Curitiba</h1>",
